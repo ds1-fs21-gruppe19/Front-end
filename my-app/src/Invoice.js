@@ -5,8 +5,19 @@ class Invoice extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {parameters: "", returnString: ""}
- 
+        this.state = {
+          Receiver_IBAN: "CH", 
+          Receiver_Name: "Name", 
+          Receiver_Street: "Strasse", 
+          Receiver_City:"PLZ/Stadt", 
+          Receiver_Ref:"Ref", 
+          AdditionalInfo:"Für den neuen Porsche",  
+          FromName: "Name",
+          FromStreet: "Street",
+          FromCity: "City",
+          Amount: "50.00"
+        }
+        this.TextInputChange = this.TextInputChange.bind(this);
       }
 
     render() {
@@ -14,23 +25,32 @@ class Invoice extends React.Component {
         <div className = "Invoice-Slip">
             <div className = "Invoice">
 
-                <div class Name = "HeaderLeft">
+                <div className = "HeaderLeft">
                   <h5>Empfangschein</h5>
                 </div>
 
-                <div class Name = "HeaderCenter">
+                <div className = "HeaderCenter">
                   <h5>Zahlzeil</h5>
                 </div>
 
+                <div className ="CutHorizotalView">
+                  <img src="./Cut-Horizontal.svg" className = "CutHorizotal"></img>
+                </div>
+
+                <div className ="CutVerticalView">
+                  <img src="./Cut-Vertical.svg" className = "CutVertical"></img>
+                </div>
+
+
                 <div className = "AddressReceiverRight">
                   <h6>Konto/Zahlbar am</h6>
-                  <input Type = "Text" id= "Receiver_IBAN" className ="TextBox_Medium" value = "CH"></input>
+                  <input type = "Text" id= "Receiver_IBAN" className ="TextBox_Medium" value = {this.state.Receiver_IBAN} onChange = {this.TextInputChange}></input>
                   <br></br>
-                  <input Type = "Text" id= "Receiver_Name" className ="TextBox_Medium" value = "Name"></input>
+                  <input type = "Text" id= "Receiver_Name" className ="TextBox_Medium" value = {this.state.Receiver_Name} onChange = {this.TextInputChange}></input>
                   <br></br>
-                  <input Type = "Text" id= "Receiver_Street" className ="TextBox_Medium" value = "Strasse"></input>
+                  <input type = "Text" id= "Receiver_Street" className ="TextBox_Medium" value = {this.state.Receiver_Street} onChange = {this.TextInputChange}></input>
                   <br></br>
-                  <input Type = "Text" id= "Receiver_City" className ="TextBox_Medium" value = "PZL/ Stadt"></input>
+                  <input type = "Text" id= "Receiver_City" className ="TextBox_Medium" value = {this.state.Receiver_City} onChange = {this.TextInputChange}></input>
                 </div>
 
                 <div className ="AddressReceiverLeft">
@@ -45,12 +65,12 @@ class Invoice extends React.Component {
                 </div>
 
                 <div className = "QRCodeView">
-                  <img src ="" className = "QrCode"></img>
+                  <img src ="./qr-code.svg" className = "QrCode"></img>
                 </div>
 
                 <div className = "ReferenzRight">
                   <h6>Referenz</h6>
-                  <input Type = "Text" id= "Receiver_Ref" className ="TextBox_Medium" value = "Ref"></input>
+                  <input type = "Text" id= "Receiver_Ref" className ="TextBox_Medium" value = {this.state.Receiver_Ref} onChange = {this.TextInputChange}></input>
                 </div>
 
                 <div className = "ReferenzLeft">
@@ -70,20 +90,18 @@ class Invoice extends React.Component {
                     </label>
                 </div>
 
-                <div class = "AdditionalInformation">
+                <div className = "AdditionalInformation">
                   <h6>Zusätzliche Informationen</h6>
-                  <br></br>
-                  <input Type = "Text" id= "AdditionalInfo" className ="TextBox_Medium" value = "Für den neuen Porsche"></input>
+                  <input type = "Text" id= "AdditionalInfo" className ="TextBox_Medium" value = {this.state.AdditionalInfo} onChange = {this.TextInputChange}></input>
                 </div>
 
-                <div class = "FromAddressRight">
+                <div className = "FromAddressRight">
                   <h6>Zahlbar durch</h6>
+                  <input type = "Text" id= "FromName" className ="TextBox_Medium" value = {this.state.FromName} onChange = {this.TextInputChange}></input>
                   <br></br>
-                  <input Type = "Text" id= "FromName" className ="TextBox_Medium" value = "Name"></input>
+                  <input type = "Text" id= "FromStreet" className ="TextBox_Medium" value = {this.state.FromStreet} onChange = {this.TextInputChange}></input>
                   <br></br>
-                  <input Type = "Text" id= "FromStreet" className ="TextBox_Medium" value = "Street"></input>
-                  <br></br>
-                  <input Type = "Text" id= "FromCity" className ="TextBox_Medium" value = "City"></input>
+                  <input type = "Text" id= "FromCity" className ="TextBox_Medium" value = {this.state.FromCity} onChange = {this.TextInputChange}></input>
                 </div>
 
                 <div className = "AmountLeft">
@@ -108,7 +126,7 @@ class Invoice extends React.Component {
                   <div className = "AmountRight_ColumnRight">
                     <h6>Betrag</h6>
                     <br></br>
-                    <input Type = "Text" id= "Amount" className ="TextBox_Medium" value = "50.00"></input>
+                    <input type = "Text" id= "Amount" className ="TextBox_Medium" value = {this.state.Amount} onChange = {this.TextInputChange}></input>
                   </div>
                 </div>
             </div>
@@ -121,6 +139,11 @@ class Invoice extends React.Component {
     {
         let result = await makeRequest("GET", url);
         console.log(result);
+    }
+
+    TextInputChange(e)
+    {
+      this.state[e.target.id] = e.target.value;
     }
   }
   

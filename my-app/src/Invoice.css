@@ -1,24 +1,98 @@
 .Invoice { 
+    --scaleFactor: 3.5;
     display: grid; 
-    grid-template-columns: repeat(4, 1fr); 
-    grid-template-rows: repeat(10, 1fr); 
+    grid-template-columns: calc(114px * var(--scaleFactor)) calc(14px * var(--scaleFactor)) calc(106px * var(--scaleFactor)) calc(132px * var(--scaleFactor)); 
+    grid-template-rows: calc(16px * var(--scaleFactor)) calc(15px * var(--scaleFactor)) calc(10px * var(--scaleFactor)) calc(23px * var(--scaleFactor)) calc(6.5px * var(--scaleFactor)) calc(17px * var(--scaleFactor)) calc(25px * var(--scaleFactor)) calc(33px * var(--scaleFactor)) calc(35.5px * var(--scaleFactor)); 
     grid-column-gap: 0px;
     grid-row-gap: 0px; 
     text-align: left;
-    width: 1190px;
-    height: 606px;
     }
-    .div1 { grid-area: 1 / 1 / 2 / 5; } 
-    .div2 { grid-area: 2 / 2 / 11 / 3; } 
+
+    .CutHorizotalView { grid-area: 1 / 1 / 2 / 5; } 
+    .CutVerticalView { grid-area: 1 / 2 / 10 / 3; } 
     .HeaderLeft { grid-area: 2 / 1 / 3 / 2; } 
     .HeaderCenter { grid-area: 2 / 3 / 3 / 4; } 
     .AddressReceiverLeft { grid-area: 3 / 1 / 5 / 2; } 
     .AddressReceiverRight { grid-area: 2 / 4 / 5 / 5; }
-    .ReferenzRight { grid-area: 5 / 4 / 6 / 5; }
+    .ReferenzRight { grid-area: 5 / 4 / 7 / 5; }
     .ReferenzLeft { grid-area: 6 / 1 / 7 / 2; } 
-    .FromAddressLeft { grid-area: 7 / 1 / 8 / 2; } 
-    .AdditionalInformation { grid-area: 8 / 4 / 9 / 5; } 
-    .FromAddressRight { grid-area: 9 / 4 / 10 / 5; } 
-    .QRCodeView { grid-area: 4 / 3 / 10 / 4; } 
-    .AmountLeft { grid-area: 10 / 1 / 11 / 2; } 
-    .AmountRight { grid-area: 10 / 3 / 11 / 4; } 
+    .FromAddressLeft { grid-area: 7 / 1 / 8 / 2;} 
+    .AdditionalInformation { grid-area: 7 / 4 / 8 / 5; } 
+    .FromAddressRight { grid-area: 8 / 4 / 9 / 5; } 
+    .QRCodeView { grid-area: 4 / 3 / 9 / 4; } 
+    .AmountLeft 
+    {   grid-area: 9 / 1 / 10 / 2;
+        display: grid; 
+        grid-template-columns: repeat(2, 1fr); 
+        grid-template-rows: 1fr; 
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;  
+    } 
+
+    .AmountRight 
+    { 
+        grid-area: 9 / 3 / 10 / 4;
+        display: grid; 
+        grid-template-columns: repeat(2, 1fr); 
+        grid-template-rows: 1fr; 
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;  
+    } 
+
+    .AmountRight_ColumnLeft
+    {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+
+    .AmountRight_ColumnRight
+    {
+        grid-area: 1 / 2 / 2 / 3;
+    }
+
+    h5{
+        font-size: 25px;
+        padding-left: 0px;
+        margin: 2px;
+    }
+    h6{
+        font-size: 20px;
+        padding: 2px;
+        margin: 2px;
+        padding-left: 0px;
+    }
+
+    h7{
+        font-size: 15px;
+        padding-left: 0px;
+    }
+
+    .TextBox_Medium{
+        font-size: 20px;
+        padding-left: 0px;
+        padding: 0px;
+        margin: 1px;
+    }
+
+    label{
+        font-size: 20px;
+        padding-left: 0px;
+    }
+    br{
+        font-size: 1px;
+        padding-left: 0px;
+        height: 0.5px;
+    }
+
+    .CutHorizotal
+    {
+        height: 20px;
+        width: 1400px;
+    }
+
+    .CutVertical
+    {
+        height: 750px;
+        width: 21px;
+    }
+
+    
