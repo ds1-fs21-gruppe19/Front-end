@@ -26,11 +26,11 @@ class Invoice extends React.Component {
             <div className = "Invoice">
 
                 <div className = "HeaderLeft">
-                  <h5>Empfangschein</h5>
+                  <h5>Empfangsschein</h5>
                 </div>
 
                 <div className = "HeaderCenter">
-                  <h5>Zahlzeil</h5>
+                  <h5>Zahlteil</h5>
                 </div>
 
                 <div className ="CutHorizotalView">
@@ -57,10 +57,10 @@ class Invoice extends React.Component {
                   <h7>Konto/Zahlbar am</h7>
                   <br></br>
                   <label id = "ReceiverAddress">
-                    CH64 3196 1000 0044 2155 7 <br></br>
-                    Max Muster<br></br>
-                    MusterStrasse 123<br></br>
-                    8000 Seldwyla
+                    {this.state.Receiver_IBAN} <br></br>
+                    {this.state.Receiver_Name} <br></br>
+                    {this.state.Receiver_Street}<br></br>
+                    {this.state.Receiver_City}
                   </label>
                 </div>
 
@@ -76,17 +76,16 @@ class Invoice extends React.Component {
                 <div className = "ReferenzLeft">
                   <h7>Referenz</h7>
                   <br></br>
-                  <label id = "ReerenzLeft">00 00082 077791 </label>
+                  <label id = "ReerenzLeft">{this.state.Receiver_Ref} </label>
                 </div>
 
                 <div className ="FromAddressLeft">
                   <h7>Zahlbar durch</h7>
                     <br></br>
                     <label id = "FromAddress">
-                      Simon Test<br></br>
-                      TestStrasse 5<br></br>
-                      MeineStrasse55<br></br>
-                      7500 West
+                    {this.state.FromName}<br></br>
+                    {this.state.FromStreet}<br></br>
+                    {this.state.FromCity}<br></br>
                     </label>
                 </div>
 
@@ -113,7 +112,7 @@ class Invoice extends React.Component {
                   <div className = "AmountLeft_ColumnRight">
                     <h7>Betrag</h7>
                     <br></br>
-                    <label id = "AmountLeft">50.00</label>
+                    <label id = "AmountLeft">{this.state.Amount}</label>
                   </div>
                 </div>
 
@@ -142,8 +141,8 @@ class Invoice extends React.Component {
     }
 
     TextInputChange(e)
-    {
-      this.state[e.target.id] = e.target.value;
+    { 
+      this.setState({[e.target.id] : e.target.value});
     }
   }
   
