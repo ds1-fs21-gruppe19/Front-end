@@ -52,4 +52,4 @@ Das Login Modul besteht aus 2 Textfelder sowie einem Button.
 ### Preview
 
 Ein Build der App kann unter dieser URL angeschaut werden. 
-Preview [Preview Site](www.QRCodePreview.rothlin.com/).
+Preview [Preview Site](www.QRCodePreview.rothlin.com).
