@@ -140,8 +140,26 @@ class Invoice extends React.Component {
 
     async GetPDF()
     { 
-        let url = ""
-        let json = ""
+        let url = "https://rothlin.com/TestApp/"
+        
+        let json = {
+          "InvoiceInfo":{
+            "Receiver_IBAN" : this.state.Receiver_IBAN,
+            "Receiver_Name": this.state.Receiver_Name, 
+            "Receiver_Street": this.state.Receiver_Street, 
+            "Receiver_City":this.state.Receiver_City, 
+            "Receiver_Ref":this.state.Receiver_Ref, 
+            "AdditionalInfo":this.state.AdditionalInfo,  
+            "FromName": this.state.FromName,
+            "FromStreet": this.state.FromStreet,
+            "FromCity": this.state.FromCity,
+            "Amount": this.state.Amount
+          },
+          "MetaData": {
+            "NumberOfPages" : 1
+          }
+          }
+
         let result = await makeRequest("POST", url, json);
         console.log(result);
     }
@@ -154,6 +172,7 @@ class Invoice extends React.Component {
     DowndLoadClick(e)
     {
       console.log("DownLoad Button Pressed")
+      this.GetPDF();
     }
   }
   
@@ -162,12 +181,13 @@ class Invoice extends React.Component {
 
   function makeRequest(method, url , json) {
       console.log(url);
+      let data = JSON.stringify(json);
     return new Promise(function (resolve, reject) {
         let xhr = new XMLHttpRequest();
         xhr.open(method, url);
         xhr.onload = function () {
             resolve(xhr.response);
         };
-        xhr.send(json);
+        xhr.send(data);
     });
 }

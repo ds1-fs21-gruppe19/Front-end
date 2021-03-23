@@ -87,8 +87,7 @@
 
     .TextBox_Medium:focus
     {
-        color: #FFFFFF;
-        background-color:  #2196F3;
+        color: #242424;
         transform: translateY(-2px);
     }
 
@@ -116,19 +115,6 @@
         width: 21px;
     }
 
-    .QrCode
-    {
-        background-color: #2196F3;
-    }
-
-    .DownloadButton
-    {
-        height: 50px;
-        width: 250px;
-        font-size: 30px;
-        border-style: solid;
-        background-color: #F29544;
-    }
 
     .DownloadButton
     {
