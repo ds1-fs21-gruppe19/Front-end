@@ -35,7 +35,7 @@ class Login extends React.Component {
       );
     }
 
-    SendPassword(e)
+    async SendPassword(e)
     {
         let baseUrl = "https://rothlin.com/TestApp/";
         let url = baseUrl + "login"
@@ -52,6 +52,10 @@ class Login extends React.Component {
 
     emailHasChanged(e)
     {
+      var regex1 = /@/;
+      var regex2 = /./;
+      var result = regex2.test(e.target.value) ;
+      console.log(result);
         this.setState({email : e.target.value});
     }
 
