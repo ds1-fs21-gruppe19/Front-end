@@ -53,3 +53,5 @@ Das Login Modul besteht aus 2 Textfelder sowie einem Button.
 
 Ein Build der App kann unter dieser URL angeschaut werden. 
 Preview [Preview](http://www.QRCodePreview.rothlin.com).
+
+Die Preview Seite sendet einen Post request an ein Echo Rest. Die Antwort des Rests wird in der Console angezeit. 
