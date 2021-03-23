@@ -1,8 +1,8 @@
 # Front-End Doc
 
-### Download PDF
+### Invoice
 
-Beim drücken auf den Knpf "Download PDF" sendet die Ract App einen **Post** request. 
+Beim drücken auf den Knopf "Download PDF" sendet die Ract App einen **Post** request. 
 Die **Json** Struktur sieht wie folgt aus. 
 
 ##### Request payload:
@@ -34,3 +34,16 @@ Das Invoice Modul besteht aus 10 Textfelder sowie einem Button.
 ![Invoice Modul](Screenshots/QRCode_View.png)
 
 
+### Login
+
+Bei drücken auf den "Login" Knopf auf der Startseite verschwindet das Invoice Modul und das Login Modul wird dargetstellt.
+
+##### Request payload:
+```
+
+```
+
+##### Invoice View:
+
+Das Login Modul besteht aus 2 Textfelder sowie einem Button. 
+![Invoice Modul](Screenshots/Login_View.png)
