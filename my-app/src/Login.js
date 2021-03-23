@@ -37,8 +37,17 @@ class Login extends React.Component {
 
     SendPassword(e)
     {
-        console.log(this.state);
-        this.props.reportLogin("Tobias Rothlin");
+        let baseUrl = "https://rothlin.com/TestApp/";
+        let url = baseUrl + "login"
+
+        let json = {
+          "user_name": this.state.email,
+          "MetaData": this.state.password
+          }
+
+        let result = await makeRequest("POST", url, json);
+        console.log(result);
+        this.props.reportLogin(this.state.email);
     }
 
     emailHasChanged(e)
@@ -53,5 +62,17 @@ class Login extends React.Component {
  
   }
   
-  
   export default Login;
+
+  function makeRequest(method, url , json) {
+    console.log(url);
+    let data = JSON.stringify(json);
+  return new Promise(function (resolve, reject) {
+      let xhr = new XMLHttpRequest();
+      xhr.open(method, url);
+      xhr.onload = function () {
+          resolve(xhr.response);
+      };
+      xhr.send(data);
+  });
+}
