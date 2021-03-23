@@ -1,25 +1,29 @@
 # Front-End Doc
 
-## Download PDF
+### Download PDF
 
-Request Type: Post
+Beim drücken auf den Knpf "Download PDF" sendet die Ract App einen **Post** request. 
+die **Json** Struktur sieht wie folgt aus. 
 
+##### Request payload:
 ```
 {
-          "InvoiceInfo":{
-            "Receiver_IBAN" : this.state.Receiver_IBAN,
-            "Receiver_Name": this.state.Receiver_Name, 
-            "Receiver_Street": this.state.Receiver_Street, 
-            "Receiver_City":this.state.Receiver_City, 
-            "Receiver_Ref":this.state.Receiver_Ref, 
-            "AdditionalInfo":this.state.AdditionalInfo,  
-            "FromName": this.state.FromName,
-            "FromStreet": this.state.FromStreet,
-            "FromCity": this.state.FromCity,
-            "Amount": this.state.Amount
-          },
-          "MetaData": {
-            "NumberOfPages" : 1
-          }
-          }
+    "InvoiceInfo":
+    {
+        "Receiver_IBAN" : "",
+        "Receiver_Name": "", 
+        "Receiver_Street": "", 
+        "Receiver_City": "", 
+        "Receiver_Ref": "", 
+        "AdditionalInfo": "",  
+        "FromName": "",
+        "FromStreet": "",
+        "FromCity": "",
+        "Amount": ""
+    },
+    "MetaData": 
+    {
+        "NumberOfPages" : 1
+    }
+}
 ```
