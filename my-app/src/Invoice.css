@@ -132,7 +132,7 @@
 
     .DownloadButton:hover
     {
-        box-shadow: 0px 15px 20px rgba(33, 150, 243, 0.4);
+       box-shadow: 0px 15px 20px rgba(33, 150, 243, 0.4);
         transform: translateY(-7px);
     }
 

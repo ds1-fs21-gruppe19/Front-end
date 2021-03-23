@@ -131,6 +131,7 @@ class Invoice extends React.Component {
                 </div>
             </div>
             <div className = "Controls">
+              <h4>Einstellungen:</h4>
               <input type="Button" className ="DownloadButton" value ="Download PDF" onClick ={this.DowndLoadClick} readOnly></input>            
             </div>
         </div>
@@ -171,7 +172,7 @@ class Invoice extends React.Component {
 
     DowndLoadClick(e)
     {
-      console.log("DownLoad Button Pressed")
+      console.log("Download Button Pressed")
       this.GetPDF();
     }
   }
