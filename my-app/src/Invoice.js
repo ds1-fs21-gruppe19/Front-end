@@ -18,6 +18,7 @@ class Invoice extends React.Component {
           Amount: "50.00"
         }
         this.TextInputChange = this.TextInputChange.bind(this);
+        this.DowndLoadClick = this.DowndLoadClick.bind(this);
       }
 
     render() {
@@ -34,11 +35,11 @@ class Invoice extends React.Component {
                 </div>
 
                 <div className ="CutHorizotalView">
-                  <img src="./Cut-Horizontal.svg" className = "CutHorizotal"></img>
+                  <img src="./Cut-Horizontal.svg" className = "CutHorizotal" alt ="ImgNotFlund"></img>
                 </div>
 
                 <div className ="CutVerticalView">
-                  <img src="./Cut-Vertical.svg" className = "CutVertical"></img>
+                  <img src="./Cut-Vertical.svg" className = "CutVertical" alt ="ImgNotFlund"></img>
                 </div>
 
 
@@ -65,7 +66,7 @@ class Invoice extends React.Component {
                 </div>
 
                 <div className = "QRCodeView">
-                  <img src ="./qr-code.svg" className = "QrCode"></img>
+                  <img src ="./qr-code.svg" className = "QrCode" alt ="ImgNotFlund"></img>
                 </div>
 
                 <div className = "ReferenzRight">
@@ -129,14 +130,19 @@ class Invoice extends React.Component {
                   </div>
                 </div>
             </div>
+            <div className = "Controls">
+              <input type="Button" className ="DownloadButton" value ="Download PDF" onClick ={this.DowndLoadClick} readOnly></input>            
+            </div>
         </div>
       );
     }
 
 
-    async getRequest(url)
-    {
-        let result = await makeRequest("GET", url);
+    async GetPDF()
+    { 
+        let url = ""
+        let json = ""
+        let result = await makeRequest("POST", url, json);
         console.log(result);
     }
 
@@ -144,12 +150,17 @@ class Invoice extends React.Component {
     { 
       this.setState({[e.target.id] : e.target.value});
     }
+
+    DowndLoadClick(e)
+    {
+      console.log("DownLoad Button Pressed")
+    }
   }
   
   
   export default Invoice;
 
-  function makeRequest(method, url) {
+  function makeRequest(method, url , json) {
       console.log(url);
     return new Promise(function (resolve, reject) {
         let xhr = new XMLHttpRequest();
@@ -157,6 +168,6 @@ class Invoice extends React.Component {
         xhr.onload = function () {
             resolve(xhr.response);
         };
-        xhr.send();
+        xhr.send(json);
     });
 }

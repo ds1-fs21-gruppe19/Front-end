@@ -6,6 +6,7 @@
     grid-column-gap: 0px;
     grid-row-gap: 0px; 
     text-align: left;
+    
     }
 
     .CutHorizotalView { grid-area: 1 / 1 / 2 / 5; } 
@@ -66,12 +67,32 @@
         padding-left: 0px;
     }
 
-    .TextBox_Medium{
+    .TextBox_Medium
+    {
         font-size: 20px;
         padding-left: 0px;
         padding: 0px;
         margin: 1px;
+        transition: all 0.3s ease 0s;
+        background-color: transparent;
+        border-style: solid;
+        border-color: #999999;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     }
+
+    .TextBox_Medium:hover
+    {
+        transform: translateY(-2px);
+    }
+
+    .TextBox_Medium:focus
+    {
+        color: #FFFFFF;
+        background-color:  #2196F3;
+        transform: translateY(-2px);
+    }
+
+
 
     label{
         font-size: 20px;
@@ -93,6 +114,40 @@
     {
         height: 750px;
         width: 21px;
+    }
+
+    .QrCode
+    {
+        background-color: #2196F3;
+    }
+
+    .DownloadButton
+    {
+        height: 50px;
+        width: 250px;
+        font-size: 30px;
+        border-style: solid;
+        background-color: #F29544;
+    }
+
+    .DownloadButton
+    {
+        height: 50px;
+        width: 250px;
+        font-size: 30px;
+        border-style: solid;
+        background-color: #2196F3;
+        color: #FFFFFF;
+        border-color: transparent;
+        border-radius: 2px;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease 0s;
+    }
+
+    .DownloadButton:hover
+    {
+        box-shadow: 0px 15px 20px rgba(33, 150, 243, 0.4);
+        transform: translateY(-7px);
     }
 
     
