@@ -47,3 +47,9 @@ Bei drücken auf den "Login" Knopf auf der Startseite verschwindet das Invoice M
 
 Das Login Modul besteht aus 2 Textfelder sowie einem Button. 
 ![Invoice Modul](Screenshots/Login_View.png)
+
+
+### Preview
+
+Ein Build der App kann unter dieser URL angeschaut werden. 
+Preview [GitHub Pages](https://QRCodePreview.rothlin.com/).
