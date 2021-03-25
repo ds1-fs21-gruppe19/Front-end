@@ -136,4 +136,21 @@
         transform: translateY(-7px);
     }
 
+    .DropDown
+    {
+        font-size: 20px;
+        padding-left: 0px;
+        padding: 0px;
+        margin: 1px;
+        transition: all 0.3s ease 0s;
+        background-color: transparent;
+        border-style: solid;
+        border-color: #999999;
+        border-radius: 0px;
+    }
     
+
+    .DropDown:hover
+    {
+        transform: translateY(-2px);
+    }
