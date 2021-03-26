@@ -71,6 +71,7 @@
     {
         font-size: 20px;
         padding-left: 0px;
+        width: 300px;
         padding: 0px;
         margin: 1px;
         transition: all 0.3s ease 0s;
@@ -153,4 +154,12 @@
     .DropDown:hover
     {
         transform: translateY(-2px);
+    }
+
+    .IconImgs
+    {
+        width: 30px;
+        height: 30px;
+        padding: 0px;
+        position: absolute;
     }

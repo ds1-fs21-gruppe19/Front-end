@@ -7,7 +7,7 @@
   height: 100px;
   display: flex;
   flex-direction: column;
-  align-items:flex-end;
+  align-items:flex-start;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
@@ -52,4 +52,23 @@ body{
   margin-top: 20px;
   margin-right: 250px;
   font-size: 20px;
+}
+
+.HeadBar
+{
+  display: grid; 
+  grid-template-columns: repeat(5, 1fr); 
+  grid-template-rows: 1fr; 
+  grid-column-gap: 0px;
+  grid-row-gap: 0px; 
+}
+
+.Titel
+{
+  grid-area: 1 / 2 / 2 / 2;
+}
+
+.LoginHeader
+{
+  grid-area: 1 / 5 / 2 / 6;
 }

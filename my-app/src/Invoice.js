@@ -7,6 +7,7 @@ class Invoice extends React.Component {
         super(props);
         this.state = {
           Receiver_IBAN: "", 
+          IbanVerified: <img alt="Warnings" hidden></img>,
           Receiver_Name: "", 
           Receiver_Street: "", 
           Receiver_City:"", 
@@ -21,6 +22,12 @@ class Invoice extends React.Component {
         this.TextInputChange = this.TextInputChange.bind(this);
         this.DowndLoadClick = this.DowndLoadClick.bind(this);
         this.dropDownChange = this.dropDownChange.bind(this);
+
+        this.IbanTextChange = this.IbanTextChange.bind(this);
+        this.IbanTextFocusLost = this.IbanTextFocusLost.bind(this);
+
+        this.AmoutTextChange = this.AmoutTextChange.bind(this);
+        this.AmountTextFocusLost = this.AmountTextFocusLost.bind(this);
       }
 
     render() {
@@ -47,7 +54,7 @@ class Invoice extends React.Component {
 
                 <div className = "AddressReceiverRight">
                   <h6>Konto/Zahlbar am</h6>
-                  <input type = "Text" id= "Receiver_IBAN" className ="TextBox_Medium" value = {this.state.Receiver_IBAN} placeholder ="IBAN Nummer" onChange = {this.TextInputChange}></input>
+                  <input type = "Text" id= "Receiver_IBAN" className ="TextBox_Medium" value = {this.state.Receiver_IBAN} placeholder ="IBAN Nummer" onChange = {this.IbanTextChange} onBlur = {this.IbanTextFocusLost} ></input> {this.state.IbanVerified}
                   <br></br>
                   <input type = "Text" id= "Receiver_Name" className ="TextBox_Medium" value = {this.state.Receiver_Name} placeholder ="Name" onChange = {this.TextInputChange}></input>
                   <br></br>
@@ -134,7 +141,7 @@ class Invoice extends React.Component {
                   <div className = "AmountRight_ColumnRight">
                     <h6>Betrag</h6>
                     <br></br>
-                    <input type = "Text" id= "Amount" className ="TextBox_Medium" value = {this.state.Amount} placeholder ="Betrag" onChange = {this.TextInputChange}></input>
+                    <input type = "Text" id= "Amount" className ="TextBox_Medium" value = {this.state.Amount} placeholder ="Betrag" onChange = {this.AmoutTextChange}></input>
                   </div>
                 </div>
             </div>
@@ -169,13 +176,78 @@ class Invoice extends React.Component {
           }
           }
 
-        let result = await makeRequest("POST", url, json);
+        let result = await PostRequest("POST", url, json);
         console.log(result);
     }
 
     TextInputChange(e)
-    { 
+    {  
       this.setState({[e.target.id] : e.target.value});
+    }
+
+    IbanTextChange(e)
+    {
+      let formatedIban = this.StringAddSpace(e.target.value);
+      this.setState({[e.target.id] : formatedIban});
+      if(e.target.value.length >= 25)
+      {
+        this.IbanTextFocusLost(e);
+      }
+    }
+
+    async IbanTextFocusLost(e)
+    { 
+      if(await this.validateIban(e.target.value))
+      {
+        this.setState({IbanVerified : <img src="./Verified.svg" className = "IconImgs" alt ="ImgNotFlund"></img>});
+      }
+      else
+      {
+        this.setState({IbanVerified : <img src="./Warning.svg" className = "IconImgs" alt ="ImgNotFlund"></img>});
+      }
+    }
+
+
+    AmoutTextChange(e)
+    {
+      let formatedAmount = this.StringAddSpace(e.target.value, 3);
+      this.setState({[e.target.id] : formatedAmount});
+    }
+
+    AmountTextFocusLost(e)
+    {
+
+    }
+
+    StringAddSpace(str, spaceNumber = 4)
+    {
+      str = str.replace(/ /g, "").toUpperCase();
+
+      let numberOfCharactersInString = str.length;
+      let numberOfSubsetsInString = parseInt(numberOfCharactersInString/spaceNumber);
+
+      let formatedIbanStr = "";
+
+      for(let index = 0 ; index < numberOfSubsetsInString; index++)
+      {
+        formatedIbanStr +=  str.substring(index*spaceNumber, (index+1)*spaceNumber) + " ";
+      }
+
+      if((numberOfCharactersInString-(spaceNumber*numberOfSubsetsInString)) === 0)
+      {
+       formatedIbanStr = formatedIbanStr.substring(0,formatedIbanStr.length-1);
+      }
+      else
+      {
+        formatedIbanStr += str.substring(spaceNumber*numberOfSubsetsInString);
+      }
+
+      //----Debug----
+      //console.log("numberOfCharactersInString: " + numberOfCharactersInString);
+      //console.log("numberOfSubsetsInString: " + numberOfSubsetsInString);
+      //console.log("formatedIbanStr: " +formatedIbanStr);
+
+      return formatedIbanStr;
     }
 
     DowndLoadClick(e)
@@ -188,12 +260,28 @@ class Invoice extends React.Component {
     {
       this.setState({Currency : e.target.value});
     }
+
+    async validateIban(iban)
+    {
+      if(iban.length > 0)
+      {
+        let request = "https://openiban.com/validate/" + iban + "?validateBankCode=true&getBIC=true";
+        let respone = await GetRequest("GET", request);
+        let data = JSON.parse(respone);
+        return data.valid;
+      }
+      else
+      {
+        return false;
+      }
+
+    }
   }
   
   
   export default Invoice;
 
-  function makeRequest(method, url , json) {
+  function PostRequest(method, url , json) {
       console.log(url);
       let data = JSON.stringify(json);
     return new Promise(function (resolve, reject) {
@@ -204,4 +292,17 @@ class Invoice extends React.Component {
         };
         xhr.send(data);
     });
+  }
+
+
+  function GetRequest(method, url) {
+    console.log(url);
+  return new Promise(function (resolve, reject) {
+      let xhr = new XMLHttpRequest();
+      xhr.open(method, url);
+      xhr.onload = function () {
+          resolve(xhr.response);
+      };
+      xhr.send();
+  });
 }
