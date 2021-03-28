@@ -60,7 +60,7 @@ class Invoice extends React.Component {
 
 
                 <div className = "AddressReceiverRight">
-                  <h6>Konto/Zahlbar am</h6>
+                  <h6>Konto/Zahlbar an</h6>
                   <input type = "Text" id= "Receiver_IBAN" className ="TextBox_Medium" value = {this.state.Receiver_IBAN} placeholder ="IBAN Nummer" onChange = {this.IbanTextChange} onBlur = {this.IbanTextFocusLost} ></input> {this.state.Iban_Verified}
                   <br></br>
                   <input type = "Text" id= "Receiver_Name" className ="TextBox_Medium" value = {this.state.Receiver_Name} placeholder ="Name" onChange = {this.TextInputChange}></input>{this.state.Receiver_Name_Verified}
@@ -71,7 +71,7 @@ class Invoice extends React.Component {
                 </div>
 
                 <div className ="AddressReceiverLeft">
-                  <h7>Konto/Zahlbar am</h7>
+                  <h7>Konto/Zahlbar an</h7>
                   <br></br>
                   <label id = "ReceiverAddress">
                     {this.state.Receiver_IBAN} <br></br>
@@ -217,56 +217,14 @@ class Invoice extends React.Component {
 
     AmoutTextChange(e)
     {
-      let formatedAmount = this.NumberFormat(e.target.value);
+      let formatedAmount = this.cleanNumbers(e.target.value);
       this.setState({[e.target.id] : formatedAmount});
     }
 
-    NumberFormat(str , spaceNumber = 3)
-    {
-      str = this.cleanNumbers(str);
-      let numberOfDigetsInString = str.length;
-      let numberOfSubsetsInString = parseInt(numberOfDigetsInString/spaceNumber);
-
-      let str_Int = str;
-      let str_Dez = "";
-
-
-      if(str.includes('.'))
-      {
-        var splitAtDec = str.split('.');
-
-        str_Int = splitAtDec[0];
-        str_Dez = splitAtDec[1];
-      }
-      
-      let formatedNumber = ""
-
-      for(let index = 0 ; index < numberOfSubsetsInString; index++)
-      {
-        formatedNumber +=  str_Int.substring(index*spaceNumber, (index+1)*spaceNumber) + "'";
-      }
-
-      if((numberOfDigetsInString-(spaceNumber*numberOfSubsetsInString)) === 0)
-      {
-        formatedNumber = formatedNumber.substring(0,formatedNumber.length-1);
-      }
-      else
-      {
-        formatedNumber += str_Int.substring(spaceNumber*numberOfSubsetsInString);
-      }
-
-      str = str_Int + "." + str_Dez;
-
-      console.dir(splitAtDec);
-      console.log("numberOfDigetsInString: " + numberOfDigetsInString);
-      return str;
-    }
 
     cleanNumbers(str)
     {
-      str = str.replace(/'/g, "");
-      str = str.replace(/[A-Z]/g, "");
-      str = str.replace(/[a-z]/g, "");
+      str = str.replace(/[^(\d + .)]/g, "");
       return str;
     }
 
