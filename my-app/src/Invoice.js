@@ -205,12 +205,12 @@ class Invoice extends React.Component {
     async IbanTextFocusLost(e)
     { 
       if(await this.validateIban(e.target.value))
-      {
-        this.setState({IbanVerified : <img src="./Verified.svg" className = "IconImgs" alt ="ImgNotFlund"></img>});
+      {  
+        this.setState({Iban_Verified : <img src="./Verified.svg" className = "IconImgs" alt ="ImgNotFlund" ></img>});
       }
       else
       {
-        this.setState({IbanVerified : <img src="./Warning.svg" className = "IconImgs" alt ="ImgNotFlund"></img>});
+        this.setState({Iban_Verified : <img src="./Warning.svg" className = "IconImgs" alt ="ImgNotFlund"></img>});
       }
     }
 
@@ -294,9 +294,9 @@ class Invoice extends React.Component {
       }
 
       //----Debug----
-      //console.log("numberOfCharactersInString: " + numberOfCharactersInString);
-      //console.log("numberOfSubsetsInString: " + numberOfSubsetsInString);
-      //console.log("formatedIbanStr: " +formatedIbanStr);
+      console.log("numberOfCharactersInString: " + numberOfCharactersInString);
+      console.log("numberOfSubsetsInString: " + numberOfSubsetsInString);
+      console.log("formatedIbanStr: " +formatedIbanStr);
 
       return formatedIbanStr;
     }
@@ -314,6 +314,7 @@ class Invoice extends React.Component {
 
     async validateIban(iban)
     {
+      iban = iban.replace(/ /g, "").toUpperCase();
       if(iban.length > 0)
       {
         let request = "https://openiban.com/validate/" + iban + "?validateBankCode=true&getBIC=true";
