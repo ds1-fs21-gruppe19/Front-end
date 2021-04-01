@@ -1,6 +1,7 @@
 import './Invoice.css';
 import React from 'react';
 import backendApi from './backendApi.js';
+import stringOpperation from './stringOpperation.js';
 
 class Invoice extends React.Component {
 
@@ -195,7 +196,7 @@ class Invoice extends React.Component {
 
     IbanTextChange(e)
     {
-      let formatedIban = this.StringAddSpace(e.target.value);
+      let formatedIban = stringOpperation.StringAddSpace(e.target.value);
       this.setState({[e.target.id] : formatedIban});
       if(e.target.value.length >= 25)
       {
@@ -218,47 +219,14 @@ class Invoice extends React.Component {
 
     AmoutTextChange(e)
     {
-      let formatedAmount = this.cleanNumbers(e.target.value);
+      let formatedAmount = stringOpperation.cleanNumbers(e.target.value);
       this.setState({[e.target.id] : formatedAmount});
     }
 
 
-    cleanNumbers(str)
-    {
-      str = str.replace(/[^(\d + .)]/g, "");
-      return str;
-    }
 
-    StringAddSpace(str, spaceNumber = 4)
-    {
-      str = str.replace(/ /g, "").toUpperCase();
 
-      let numberOfCharactersInString = str.length;
-      let numberOfSubsetsInString = parseInt(numberOfCharactersInString/spaceNumber);
-
-      let formatedIbanStr = "";
-
-      for(let index = 0 ; index < numberOfSubsetsInString; index++)
-      {
-        formatedIbanStr +=  str.substring(index*spaceNumber, (index+1)*spaceNumber) + " ";
-      }
-
-      if((numberOfCharactersInString-(spaceNumber*numberOfSubsetsInString)) === 0)
-      {
-       formatedIbanStr = formatedIbanStr.substring(0,formatedIbanStr.length-1);
-      }
-      else
-      {
-        formatedIbanStr += str.substring(spaceNumber*numberOfSubsetsInString);
-      }
-
-      //----Debug----
-      console.log("numberOfCharactersInString: " + numberOfCharactersInString);
-      console.log("numberOfSubsetsInString: " + numberOfSubsetsInString);
-      console.log("formatedIbanStr: " +formatedIbanStr);
-
-      return formatedIbanStr;
-    }
+    
 
     DowndLoadClick(e)
     {
