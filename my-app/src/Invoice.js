@@ -1,5 +1,6 @@
 import './Invoice.css';
 import React from 'react';
+import backendApi from './backendApi.js';
 
 class Invoice extends React.Component {
 
@@ -183,7 +184,7 @@ class Invoice extends React.Component {
           }
           }
 
-        let result = await PostRequest("POST", url, json);
+        let result = await backendApi.PostRequest( url, json);
         console.log(result);
     }
 
@@ -204,7 +205,7 @@ class Invoice extends React.Component {
 
     async IbanTextFocusLost(e)
     { 
-      if(await this.validateIban(e.target.value))
+      if(await backendApi.validateIban(e.target.value))
       {  
         this.setState({Iban_Verified : <img src="./Verified.svg" className = "IconImgs" alt ="ImgNotFlund" ></img>});
       }
@@ -270,49 +271,9 @@ class Invoice extends React.Component {
       this.setState({Currency : e.target.value});
     }
 
-    async validateIban(iban)
-    {
-      iban = iban.replace(/ /g, "").toUpperCase();
-      if(iban.length > 0)
-      {
-        let request = "https://openiban.com/validate/" + iban + "?validateBankCode=true&getBIC=true";
-        let respone = await GetRequest("GET", request);
-        let data = JSON.parse(respone);
-        return data.valid;
-      }
-      else
-      {
-        return false;
-      }
-
-    }
+    
   }
   
   
   export default Invoice;
 
-  function PostRequest(method, url , json) {
-      console.log(url);
-      let data = JSON.stringify(json);
-    return new Promise(function (resolve, reject) {
-        let xhr = new XMLHttpRequest();
-        xhr.open(method, url);
-        xhr.onload = function () {
-            resolve(xhr.response);
-        };
-        xhr.send(data);
-    });
-  }
-
-
-  function GetRequest(method, url) {
-    console.log(url);
-  return new Promise(function (resolve, reject) {
-      let xhr = new XMLHttpRequest();
-      xhr.open(method, url);
-      xhr.onload = function () {
-          resolve(xhr.response);
-      };
-      xhr.send();
-  });
-}
