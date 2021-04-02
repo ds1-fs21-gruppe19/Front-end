@@ -30,7 +30,7 @@ class Invoice extends React.Component {
           Currency: "CHF"
         }
         this.TextInputChange = this.TextInputChange.bind(this);
-        this.DowndLoadClick = this.DowndLoadClick.bind(this);
+        this.DowndLoadClick = this.DownloadClick.bind(this);
         this.dropDownChange = this.dropDownChange.bind(this);
 
         this.IbanTextChange = this.IbanTextChange.bind(this);
@@ -156,7 +156,7 @@ class Invoice extends React.Component {
             </div>
             <div className = "Controls">
               <h4>Einstellungen:</h4>
-              <input type="Button" className ="DownloadButton" value ="Download PDF" onClick ={this.DowndLoadClick} readOnly></input>            
+              <input type="Button" className ="DownloadButton" value ="Download PDF" onClick ={this.DownloadClick} readOnly></input>            
             </div>
         </div>
       );
@@ -197,6 +197,11 @@ class Invoice extends React.Component {
     IbanTextChange(e)
     {
       let formatedIban = stringOpperation.StringAddSpace(e.target.value);
+      console.log(formatedIban.length);
+      if(formatedIban.length >26)
+      {
+        formatedIban =formatedIban.substring(0,26);
+      }
       this.setState({[e.target.id] : formatedIban});
       if(e.target.value.length >= 25)
       {
@@ -224,11 +229,7 @@ class Invoice extends React.Component {
     }
 
 
-
-
-    
-
-    DowndLoadClick(e)
+    DownloadClick(e)
     {
       console.log("Download Button Pressed")
       this.GetPDF();
