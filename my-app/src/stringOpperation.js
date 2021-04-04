@@ -63,7 +63,7 @@ class stringOpperation{
             intergerValue = intergerValue.substring(1);
         }
 
-        console.log("InsertValue: " + intergerValue);
+        
 
         let decValue = "00";
         if(partsInString.length >1)
@@ -83,6 +83,7 @@ class stringOpperation{
 
 
         //----Debug----
+        //console.log("InsertValue: " + intergerValue);
         //console.log("FormatingString:");
         //console.log(inputStr);
         //console.log("partsInString.lengt: " + partsInString.length);

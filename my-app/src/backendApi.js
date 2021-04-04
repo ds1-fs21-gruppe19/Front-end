@@ -21,6 +21,15 @@ class backendApi extends basicRestRequests
     }
 
 
+    static async getPDF(json)
+    {
+        let url = "https://rothlin.com/TestApp/";
+        let result = await this.PostRequest(url,json);
+        console.log(result);
+        return result;
+    }
+
+
     
 }
 
