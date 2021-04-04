@@ -155,9 +155,16 @@ class Invoice extends React.Component {
                   </div>
                 </div>
             </div>
+            <div className = "space"></div>
             <div className = "Controls">
-              <h4>Einstellungen:</h4>
-              <input type="Button" className ="DownloadButton" value ="Download PDF" onClick ={this.DownloadClick} readOnly></input>            
+              <div className ="Controls_Title">
+                <h2 className = "ControlsTitel_Text">Einstellungen:</h2>
+              </div>
+              <div className ="EmptySettings"></div>
+              <div className = "Controls_DownLoadButton">
+                <input type="Button" className ="DownloadButton" value ="Download PDF" onClick ={this.DownloadClick} readOnly></input> 
+              </div>
+                         
             </div>
         </div>
       );

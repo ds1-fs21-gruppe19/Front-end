@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import Invoice from './Invoice.js';
-
 import Login from './Login.js';
+import Header from './Header.js';
 
 class App extends React.Component
 { 
@@ -18,35 +18,10 @@ class App extends React.Component
   }
 
   render() {
-
-    let loginView;
-    const islogedIn = this.state.loginState;
-    if(!islogedIn)
-    {
-      loginView = <input type ="Button" value ="Login" className = "LoginButton" onClick = {this.LoginPressed}></input>;
-    }
-    else
-    {
-      let text = "Wilkommen " + this.state.userName;
-      console.log(text);
-      loginView = <label className = "LblReturningUsers">{text}</label>;
-    }
-  
-
-
     return (
       <div className="App">
         <header className="App-header">
-          <div className ="HeadBar">
-            <div className ="Titel">
-              <h2>QR-Rechnung</h2>
-            </div>
-            <div class = "LoginHeader">
-              {loginView}
-            </div>
-          </div>
-
-          
+          <Header loginState = {this.state.loginState}></Header>
         </header>
   
           {this.state.CurrentPage}

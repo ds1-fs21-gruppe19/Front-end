@@ -20,7 +20,11 @@
     .FromAddressLeft { grid-area: 7 / 1 / 8 / 2;} 
     .AdditionalInformation { grid-area: 7 / 4 / 8 / 5; } 
     .FromAddressRight { grid-area: 8 / 4 / 9 / 5; } 
-    .QRCodeView { grid-area: 4 / 3 / 9 / 4; } 
+    .QRCodeView { 
+        grid-area: 4 / 3 / 9 / 4;
+        padding-right: 40px;
+        transform: translateX(-5px);
+     } 
     .AmountLeft 
     {   grid-area: 9 / 1 / 10 / 2;
         display: grid; 
@@ -128,13 +132,14 @@
         border-color: transparent;
         border-radius: 2px;
         box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+        transform: translateY(8px);
         transition: all 0.3s ease 0s;
     }
 
     .DownloadButton:hover
     {
        box-shadow: 0px 15px 20px rgba(33, 150, 243, 0.4);
-        transform: translateY(-7px);
+        transform: translateY(1px);
     }
 
     .DropDown
@@ -149,6 +154,11 @@
         border-color: #999999;
         border-radius: 0px;
     }
+
+    .space
+    {
+        height: 30px;
+    }
     
 
     .DropDown:hover
@@ -162,4 +172,36 @@
         height: 30px;
         padding: 0px;
         position: absolute;
+    }
+
+    .Controls
+    {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+    }
+
+    .Controls_Titel
+    {
+        grid-area: 1 / 1 / 2 / 2;
+       text-align: left;
+    }
+
+
+    .Controls_DownloadButton
+    {
+        grid-area: 1 / 5 / 2 / 6;
+        align-items: center;
+    }
+
+    .EmptySettings
+    {
+        grid-area: 1 / 2 / 2 / 5;
+    }
+
+    .ControlsTitel_Text
+    {
+        text-align: left;
     }

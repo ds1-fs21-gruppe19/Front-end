@@ -1,0 +1,59 @@
+.LoginButton
+{ 
+  height: 40px;
+  width: 80px;
+  font-size: 20px;
+  border-style: solid;
+  background-color: #2196F3;
+  color: #FFFFFF;
+  border-color: transparent;
+  border-radius: 2px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  
+
+}
+
+.LoginButton:hover
+{ 
+  box-shadow: 0px 15px 20px rgba(33, 150, 243, 0.4);
+  transform: translateX(-7px);
+}
+
+
+.Header
+    {
+        padding-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        width: 1281px;
+    }
+
+    .Header_Titel
+    {
+        grid-area: 1 / 1 / 2 / 2;
+       text-align: left;
+    }
+
+
+    .Header_LoginButton
+    {
+        grid-area: 1 / 5 / 2 / 6;
+        margin-left: auto; 
+        margin-right: 0;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .EmptySettings
+    {
+        grid-area: 1 / 2 / 2 / 5;
+    }
+
+    .ControlsTitel_Text
+    {
+        text-align: left;
+    }
