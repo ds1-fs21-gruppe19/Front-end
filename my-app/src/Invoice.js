@@ -37,6 +37,7 @@ class Invoice extends React.Component {
         this.IbanTextFocusLost = this.IbanTextFocusLost.bind(this);
 
         this.AmoutTextChange = this.AmoutTextChange.bind(this);
+        this.AmountTextFocusLost = this.AmountTextFocusLost.bind(this);
       }
 
     render() {
@@ -150,7 +151,7 @@ class Invoice extends React.Component {
                   <div className = "AmountRight_ColumnRight">
                     <h6>Betrag</h6>
                     <br></br>
-                    <input type = "Text" id= "Amount" className ="TextBox_Medium" value = {this.state.Amount} placeholder ="Betrag" onChange = {this.AmoutTextChange}></input>{this.state.Amount_Verified}
+                    <input type = "Text" id= "Amount" className ="TextBox_Medium" value = {this.state.Amount} placeholder ="Betrag" onChange = {this.AmoutTextChange} onBlur ={this.AmountTextFocusLost}></input>{this.state.Amount_Verified}
                   </div>
                 </div>
             </div>
@@ -221,6 +222,12 @@ class Invoice extends React.Component {
       }
     }
 
+    AmountTextFocusLost(e)
+    {
+      let FormatedAmount = stringOpperation.formatValue(e.target.value);
+      this.setState({[e.target.id] : FormatedAmount});
+    }
+
 
     AmoutTextChange(e)
     {
@@ -232,6 +239,7 @@ class Invoice extends React.Component {
     DownloadClick(e)
     {
       console.log("Download Button Pressed")
+
       this.GetPDF();
     }
 
