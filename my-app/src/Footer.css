@@ -1,0 +1,27 @@
+.Copyright
+{
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+.LinkButton
+{
+    background-color: transparent;
+    border-style: none;
+    text-decoration: underline;
+    color: #2196F3;
+    transition: all 0.3s ease 0s;
+}
+
+.LinkButton:hover
+{
+    transform: translateY(-2px);
+}
+
+.AdditionalInfoText{
+    font-size: 13px;
+}
+
+.Logo{
+    height: 50px;
+}

@@ -18,7 +18,8 @@ body{
   place-items: center;
 }
 
-
-
-
-
+.FooterMain
+{
+  padding-top: 100px;
+  width: 1281px;
+}

@@ -3,6 +3,7 @@ import './App.css';
 import Invoice from './Invoice.js';
 import Login from './Login.js';
 import Header from './Header.js';
+import Footer from './Footer.js';
 
 class App extends React.Component
 { 
@@ -25,6 +26,11 @@ class App extends React.Component
         </header>
   
           {this.state.CurrentPage}
+        <footer>
+          <div className="FooterMain">
+            <Footer Titel ="QR_Rechnung"></Footer>
+          </div> 
+        </footer>
       </div>
     );
   }

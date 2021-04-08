@@ -31,7 +31,7 @@ class Header extends React.Component {
         
         <div className = "Header">
             <div className ="Header_Titel">
-                <h1>QR-Rechnung</h1>
+                <img src = "./LogoGross.svg" className ="HeaderLogo" alt={this.props.Titel}></img>
             </div>
             <div className = "Header_LoginButton">
             {loginView}
