@@ -14,15 +14,15 @@ class App extends React.Component
       loginState : false,
       userName : ""
     }
-    this.LoginPressed = this.LoginPressed.bind(this);
     this.reportLogin = this.reportLogin.bind(this);
+    this.reportLoginPressed = this.reportLoginPressed.bind(this);
   }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <Header loginState = {this.state.loginState}></Header>
+          <Header loginState = {this.state.loginState} reportLoginPressed= {this.reportLoginPressed} userName = {this.state.userName}></Header>
         </header>
   
           {this.state.CurrentPage}
@@ -35,16 +35,17 @@ class App extends React.Component
     );
   }
 
-  LoginPressed(e)
-  {
-    this.setState({CurrentPage : <Login reportLogin = {this.reportLogin}></Login>});
-  }
-
   reportLogin(e)
   {
+    console.log("User loged In");
     this.setState({CurrentPage : <Invoice></Invoice>});
     this.setState({loginState : true});
     this.setState({userName : e});
+  }
+
+  reportLoginPressed(e)
+  {
+    this.setState({CurrentPage : <Login reportLogin = {this.reportLogin}></Login>});
   }
 }
 

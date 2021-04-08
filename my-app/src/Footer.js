@@ -41,7 +41,8 @@ class Footer extends React.Component {
             });
             this.setState({
                 infoState : "Legal",
-                LegalButtonText:"Close Legal"
+                LegalButtonText:"Close Legal",
+                PrivacyButtonText:"Privacy Policy"
             });
         }
         else
@@ -49,7 +50,8 @@ class Footer extends React.Component {
             this.setState({additionalInfo : <div></div>});
             this.setState({
                 infoState : "non",
-                LegalButtonText:"Legal Stuff"
+                LegalButtonText:"Legal Stuff",
+                PrivacyButtonText:"Privacy Policy"
             });
         }
         
@@ -64,6 +66,7 @@ class Footer extends React.Component {
             });
             this.setState({
                 infoState : "Privacy",
+                LegalButtonText:"Legal Stuff",
                 PrivacyButtonText:"Close Privacy"
             });
         }
@@ -72,6 +75,7 @@ class Footer extends React.Component {
             this.setState({additionalInfo : <div></div>});
             this.setState({
                 infoState : "non",
+                LegalButtonText:"Legal Stuff",
                 PrivacyButtonText:"Privacy Policy"
             });
         }

@@ -23,3 +23,26 @@
     box-shadow: 0px 15px 20px rgba(33, 150, 243, 0.4);
     transform: translateY(-2px);
 }
+
+.LoginPage
+{
+    padding-top: 300px;
+    padding-bottom: 300px;
+}
+
+
+.Login_IconImgs
+{
+    width: 30px;
+    height: 30px;
+    padding: 0px;
+    margin-top: 16px;
+    position: absolute;
+}
+
+.errorText
+{
+    font-size: 20px;
+    color: #F56451;
+    font-weight:normal;
+}

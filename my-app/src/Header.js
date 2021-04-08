@@ -10,20 +10,20 @@ class Header extends React.Component {
             loginState : false
         }
 
-        this.SendPassword = this.SendPassword.bind(this);
+        this.LoginPressed = this.LoginPressed.bind(this);
         
       }
 
     render() {
         let loginView;
-        const islogedIn = this.state.loginState;
+        const islogedIn = this.props.loginState;
         if(!islogedIn)
         {
             loginView = <input type ="Button" value ="Login" className = "LoginButton" onClick = {this.LoginPressed}></input>;
         }
         else
         {
-            let text = "Wilkommen " + this.state.userName;
+            let text = "Wilkommen " + this.props.userName;
             console.log(text);
             loginView = <label className = "LblReturningUsers">{text}</label>;
         }
@@ -40,9 +40,9 @@ class Header extends React.Component {
       );
     }
 
-    async SendPassword(e)
+    LoginPressed(e)
     {
-        
+        this.props.reportLoginPressed();
     }
  
   }
