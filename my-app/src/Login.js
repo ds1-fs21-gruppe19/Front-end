@@ -20,22 +20,35 @@ class Login extends React.Component {
         this.Login = this.Login.bind(this);
         this.emailHasChanged = this.emailHasChanged.bind(this);
         this.passwordHasChanged = this.passwordHasChanged.bind(this);
-        
+        this.registerButtonPressed = this.registerButtonPressed.bind(this);
       }
 
     render() {
       return (
         <div className = "LoginPage">
-            <h1>Willkommen zurück!</h1>
+            
             <div className ="LoginField">
-                <div className = "ElementsInField">
+                <div className = "LoginSide">
+                  <h1>Willkommen zurück!</h1>
                     <input  className ="TextField" type ="Text" placeholder ="Email" onChange ={this.emailHasChanged}></input>
                     {this.state.validEmail}
                     <br></br>
-                    <input className ="TextField" type ="Password" placeholder ="Password" onChange = {this.passwordHasChanged}></input>
+                    <input className ="TextField" type ="Password" placeholder ="Passwort" onChange = {this.passwordHasChanged}></input>
                     <br></br>
                     <input className ="Btn_Login" type ="Button" value ="Login" onClick={this.Login} readOnly></input>
                     {this.state.errorText}
+                </div>
+                <div className="VerticalSeparator"><br></br></div>
+                <div className ="RegisterSide">
+                  <h1>Neu hier?</h1>
+                  <h4 className ="RegisterTitel">Mit einem Konto können Sie:</h4>
+                  <img src="./Speichern.svg" className = "IconRegister" alt ="ImgNotFlund" ></img>
+                  <label>Einzelne Teile des Einzahlungsscheins speichern</label>
+                  <br></br>
+                  <img src="./Herunterladen.svg" className = "IconRegister" alt ="ImgNotFlund" ></img>
+                  <label>Mehrere Einzahlungsscheine in einem PDF herunterladen</label>
+                  <br></br>
+                  <input className ="Btn_Register" type ="Button" value ="Registrieren" onClick={this.registerButtonPressed} readOnly></input>
                 </div>
             </div>
         </div>
@@ -82,20 +95,13 @@ class Login extends React.Component {
           isPasswordValid: true
         });
     }
+
+    registerButtonPressed(e)
+    {
+      this.props.reportRegisterPressed(e)
+    }
  
   }
   
   export default Login;
-
-  function makeRequest(method, url , json) {
-    console.log(url);
-    let data = JSON.stringify(json);
-  return new Promise(function (resolve, reject) {
-      let xhr = new XMLHttpRequest();
-      xhr.open(method, url);
-      xhr.onload = function () {
-          resolve(xhr.response);
-      };
-      xhr.send(data);
-  });
-}
+  

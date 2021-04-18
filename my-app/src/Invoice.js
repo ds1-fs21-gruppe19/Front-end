@@ -66,7 +66,7 @@ class Invoice extends React.Component {
                   <h6>Konto/Zahlbar an</h6>
                   <input type = "Text" id= "Receiver_IBAN" className ="TextBox_Medium" value = {this.state.Receiver_IBAN} placeholder ="IBAN Nummer" onChange = {this.IbanTextChange} onBlur = {this.IbanTextFocusLost} ></input> {this.state.Iban_Verified}
                   <br></br>
-                  <input type = "Text" id= "Receiver_Name" className ="TextBox_Medium" value = {this.state.Receiver_Name} placeholder ="Name" onChange = {this.TextInputChange}></input>{this.state.Receiver_Name_Verified}
+                  <input type = "Text" id= "Receiver_Name" className ="TextBox_Medium" value = {this.state.Receiver_Name} placeholder ="Vorname Nachname" onChange = {this.TextInputChange}></input>{this.state.Receiver_Name_Verified}
                   <br></br>
                   <input type = "Text" id= "Receiver_Street" className ="TextBox_Medium" value = {this.state.Receiver_Street} placeholder ="Strasse Nr." onChange = {this.TextInputChange}></input>{this.state.Receiver_Street_Verified}
                   <br></br>

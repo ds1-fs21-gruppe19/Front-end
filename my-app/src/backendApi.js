@@ -44,6 +44,14 @@ class backendApi extends basicRestRequests
       return result;
     }
 
+    static async registerNewUser(json)
+    {
+      console.log(this.#baseUrl);
+        let result = await this.PostRequest(this.#baseUrl,json);
+        console.log(result);
+        return result;
+    }
+
 
     
 }
