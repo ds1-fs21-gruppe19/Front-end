@@ -20,6 +20,7 @@ class App extends React.Component
     this.reportLoginPressed = this.reportLoginPressed.bind(this);
     this.reportRegisterPressed = this.reportRegisterPressed.bind(this);
     this.reportHomePressed = this.reportHomePressed.bind(this);
+    this.reportRegister = this.reportRegister.bind(this);
     }
 
   render() {
@@ -56,7 +57,7 @@ class App extends React.Component
   reportRegisterPressed(e)
   {
     this.setState({showLogin : false});
-    this.setState({currentPage : <Register reportLogin = {this.reportRegister}></Register>});
+    this.setState({currentPage : <Register reportRegister = {this.reportRegister}></Register>});
   }
 
   reportHomePressed(e)
@@ -65,6 +66,12 @@ class App extends React.Component
     {
       this.setState({showLogin : true});
     }
+    this.setState({currentPage : <Invoice></Invoice>});
+  }
+
+  reportRegister(e)
+  {
+    this.setState({showLogin : true});
     this.setState({currentPage : <Invoice></Invoice>});
   }
 }

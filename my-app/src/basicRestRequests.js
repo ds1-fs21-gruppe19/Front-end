@@ -6,9 +6,11 @@ class basicRestRequests
         let data = JSON.stringify(json);
       return new Promise(function (resolve, reject) {
           let xhr = new XMLHttpRequest();
+          xhr.withCredentials = true;
           xhr.open("POST", url);
+          xhr.setRequestHeader("Content-Type", "application/json");
           xhr.onload = function () {
-              resolve(xhr.response);
+              resolve(xhr);
           };
           xhr.send(data);
       });
@@ -18,6 +20,7 @@ class basicRestRequests
         console.log(url);
       return new Promise(function (resolve, reject) {
           let xhr = new XMLHttpRequest();
+          xhr.withCredentials = true;
           xhr.open("GET", url);
           xhr.onload = function () {
               resolve(xhr.response);

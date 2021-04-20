@@ -11,6 +11,7 @@
     grid-column-gap: 15px;
     grid-row-gap: 10px; 
     text-align: left;
+    transform: translateX(30px);
 }
 
 .TextBox_Half
@@ -66,12 +67,6 @@
     width: 100%;
     transform: translateY(32px);
 } 
-.PasswordVerification 
-{ 
-    grid-area: 7 / 3 / 8 / 4; 
-    width: 100%;
-    transform: translateY(32px);
-} 
 
 .TextBoxLbl_Register
 {
@@ -97,4 +92,12 @@
 {
     box-shadow: 0px 15px 20px rgba(33, 150, 243, 0.4);
     transform: translateY(-2px);
+}
+
+.ErrorEmailUsed
+{
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #F56451;
 }

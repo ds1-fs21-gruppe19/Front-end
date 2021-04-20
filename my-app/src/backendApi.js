@@ -3,7 +3,7 @@ import basicRestRequests from './basicRestRequests.js';
 
 class backendApi extends basicRestRequests
 { 
-    static #baseUrl = "https://rothlin.com/TestApp/";
+    static #baseUrl = "http://127.0.0.1:8000/";
 
     static async validateIban(iban)
     {
@@ -27,7 +27,6 @@ class backendApi extends basicRestRequests
     {   
         console.log(this.#baseUrl);
         let result = await this.PostRequest(this.#baseUrl,json);
-        console.log(result);
         return result;
     }
 
@@ -38,18 +37,15 @@ class backendApi extends basicRestRequests
         "user_name": email,
         "password": passowrd
         }
-
       let result = await this.PostRequest(url, json);
-      console.log(result);
       return result;
     }
 
     static async registerNewUser(json)
     {
-      console.log(this.#baseUrl);
-        let result = await this.PostRequest(this.#baseUrl,json);
-        console.log(result);
-        return result;
+      let url = this.#baseUrl + "register";
+      let result = await this.PostRequest(url,json);
+      return result;
     }
 
 

@@ -56,12 +56,13 @@ class Login extends React.Component {
     }
 
     async Login(e)
-    {   
-      if(this.state.isEmailValid && this.state.isPasswordValid)
+    { 
+      let respone = await backendApi.login(this.state.email,this.state.password);
+
+      if(respone.status === 200)
         {
-          let respone = await backendApi.login(this.state.email,this.state.password);
           this.props.reportLogin(this.state.email);
-          this.setState({errorText : <h2 className="errorText"></h2>});
+          this.setState({errorText : <h2 className="errorText"></h2>}); 
         }
         else
         {
@@ -71,10 +72,11 @@ class Login extends React.Component {
 
     emailHasChanged(e)
     {
-      if(stringOpperation.validateEmail(e.target.value))
+      let str = e.target.value.toLowerCase();
+      if(stringOpperation.validateEmail(str))
       {
         this.setState({
-          email : e.target.value,
+          email : str,
           isEmailValid: true
         });
         this.setState({validEmail : <img src="./Verified.svg" className = "Login_IconImgs" alt ="ImgNotFlund" ></img>});

@@ -20,6 +20,7 @@ class Register extends React.Component {
           user_name: "",
           email_Verified: <img alt="Warnings" hidden></img>,
           password: "",
+          EmailUsed: <label className="ErrorEmailUsed"></label>
         }
         this.Register = this.Register.bind(this); 
         this.TextInputChange = this.TextInputChange.bind(this);
@@ -70,7 +71,7 @@ class Register extends React.Component {
               </div>
 
               <div className = "EmailField">
-              <label className = "TextBoxLbl_Register">Email</label><br></br>
+              <label className = "TextBoxLbl_Register">Email</label>{this.state.EmailUsed}<br></br>
               <input type = "Text" id= "user_name" className ="TextBox_Full" value = {this.state.user_name} placeholder ="" onChange = {this.emailHasChanged}></input>
               </div>
 
@@ -80,7 +81,7 @@ class Register extends React.Component {
               </div>
 
               <div className = "SubmitField">
-              <input className ="Btn_RegisterSubmit" type ="Button" value ="Registrieren" onClick={this.registerButtonPressed} readOnly></input>
+              <input className ="Btn_RegisterSubmit" type ="Button" value ="Registrieren" onClick={this.Register} readOnly></input>
               </div>
               
               {this.state.Iban_Verified}
@@ -160,7 +161,15 @@ class Register extends React.Component {
         };
 
       let respone = await backendApi.registerNewUser(json);
-
+      if(respone.status === 200)
+      {
+        this.props.reportRegister(e);
+      }
+      else
+      {
+        this.setState({EmailUsed : <label className="ErrorEmailUsed">Für diese Adresse gibt es bereits ein Login</label>});
+      }
+      
     }
   }
   
