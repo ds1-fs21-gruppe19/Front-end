@@ -8,23 +8,17 @@ Die **Json** Struktur sieht wie folgt aus.
 ##### Request payload:
 ```
 {
-    "InvoiceInfo":
-    {
-        "Receiver_IBAN" : "",
-        "Receiver_Name": "", 
-        "Receiver_Street": "", 
-        "Receiver_City": "", 
-        "Receiver_Ref": "", 
-        "AdditionalInfo": "",  
-        "FromName": "",
-        "FromStreet": "",
-        "FromCity": "",
-        "Amount": ""
-    },
-    "MetaData": 
-    {
-        "NumberOfPages" : 1
-    }
+    "Receiver_IBAN" : "CH40 0077 7003 6561 2009 5",
+    "Receiver_Name": "Tobias Rothlin",
+    "Receiver_Street": "Peterliwiese 33",
+    "Receiver_City": "8855 Wangen SZ",
+    "Receiver_Ref": "",
+    "AdditionalInfo": "Test123",
+    "FromName": "Hans Muster",
+    "FromStreet": "Sonnenstrasse 31",
+    "FromCity": "2000 Schöningen",
+    "Amount": "5000.00",
+    "Currency": "CHF"
 }
 ```
 
