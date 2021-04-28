@@ -48,6 +48,32 @@ class backendApi extends basicRestRequests
       return result;
     }
 
+    static async getCurrentUsers(jwt)
+    {
+      let url = this.#baseUrl + "users";
+      let result = await this.GetRequest(url,jwt);
+      return result;
+    }
+
+    static async createNewUser(json, jwt)
+    {
+      let url = this.#baseUrl + "create-user";
+      let result = await this.PostRequest(url, json, jwt);
+      return result;
+    }
+
+    static async deleteUser(userNumber, jwt)
+    {
+      let url = this.#baseUrl + "delete-users/" + userNumber;
+      let result = await this.DeleteRequest(url, jwt);
+      return result;
+    }
+
+    static async refreshLogin()
+    {
+      
+    }
+
 
     
 }

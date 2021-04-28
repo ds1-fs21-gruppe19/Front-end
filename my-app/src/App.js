@@ -5,6 +5,7 @@ import Login from './Login.js';
 import Header from './Header.js';
 import Footer from './Footer.js';
 import Register from './Register.js';
+import MyAccount from './MyAccount.js';
 
 class App extends React.Component
 { 
@@ -13,6 +14,8 @@ class App extends React.Component
     this.state = {
       currentPage: <Invoice></Invoice>,
       loginState : false,
+      jwttoken: "",
+      experationTime : 0,
       userName : "",
       showLogin : true
     }
@@ -21,13 +24,19 @@ class App extends React.Component
     this.reportRegisterPressed = this.reportRegisterPressed.bind(this);
     this.reportHomePressed = this.reportHomePressed.bind(this);
     this.reportRegister = this.reportRegister.bind(this);
+    this.reportMyAccountPressed = this.reportMyAccountPressed.bind(this);
+    }
+
+
+    refreshToken= () => {
+      console.log("Refreshing Login");
     }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <Header showLogin = {this.state.showLogin} loginState = {this.state.loginState} reportLoginPressed= {this.reportLoginPressed}  reportHomePressed = {this.reportHomePressed}  userName = {this.state.userName}></Header>
+          <Header showLogin = {this.state.showLogin} loginState = {this.state.loginState} reportLoginPressed= {this.reportLoginPressed}  reportHomePressed = {this.reportHomePressed} reportMyAccountPressed = {this.reportMyAccountPressed}  userName = {this.state.userName}></Header>
         </header>
   
           {this.state.currentPage}
@@ -42,10 +51,15 @@ class App extends React.Component
 
   reportLogin(e)
   {
-    console.log("User loged In");
     this.setState({currentPage : <Invoice></Invoice>});
     this.setState({loginState : true});
-    this.setState({userName : e});
+    this.setState({userName : e.User});
+    this.setState({jwttoken : e.Data.token});
+    this.setState({experationTime : e.Data.expiration_secs});
+    let refreshIntervall = (e.Data.expiration_secs-100)*1000;
+    this.refreshToken();
+    setInterval(this.refreshToken, refreshIntervall);
+
   }
 
   reportLoginPressed(e)
@@ -73,6 +87,11 @@ class App extends React.Component
   {
     this.setState({showLogin : true});
     this.setState({currentPage : <Invoice></Invoice>});
+  }
+
+  reportMyAccountPressed(e)
+  {
+    this.setState({currentPage : <MyAccount jwttoken = {this.state.jwttoken}></MyAccount>});
   }
 }
 

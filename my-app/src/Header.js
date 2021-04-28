@@ -13,6 +13,7 @@ class Header extends React.Component {
         this.LoginPressed = this.LoginPressed.bind(this);
         this.RegisterPressed = this.RegisterPressed.bind(this);
         this.HomePressed = this.HomePressed.bind(this);
+        this.EditPressed = this.EditPressed.bind(this);
       }
 
     render() {
@@ -50,6 +51,11 @@ class Header extends React.Component {
     LoginPressed(e)
     {
         this.props.reportLoginPressed();
+    }
+
+    EditPressed(e)
+    {
+        this.props.reportMyAccountPressed();
     }
 
     RegisterPressed(e)
