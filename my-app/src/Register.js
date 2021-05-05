@@ -9,23 +9,18 @@ class Register extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          Iban_Verified: <img alt="Warnings" hidden></img>,
-          first_name: "", 
-          last_name: "",
-          address: "",
-          zip_code: "",
-          city: "",
-          iban: "",
-          country: "",
-          user_name: "",
-          email_Verified: <img alt="Warnings" hidden></img>,
-          password: "",
-          EmailUsed: <label className="ErrorEmailUsed"></label>
+          name: ["", "TextBox_Half",""], 
+          address: ["", "TextBox_Full",""],
+          zip_code: ["", "TextBox_Half",""],
+          city: ["", "TextBox_Half",""],
+          iban: ["", "TextBox_Full",""],
+          country: ["", "TextBox_Full",""],
+          user_name: ["", "TextBox_Full",""],
+          password: ["", "TextBox_Full",""],
         }
-        this.Register = this.Register.bind(this); 
+        this.Register = this.Register.bind(this);
         this.TextInputChange = this.TextInputChange.bind(this);
         this.IbanTextChange = this.IbanTextChange.bind(this);
-        this.IbanTextFocusLost = this.IbanTextFocusLost.bind(this);
         this.emailHasChanged = this.emailHasChanged.bind(this);
       }
 
@@ -35,71 +30,82 @@ class Register extends React.Component {
             <h1>Registrieren</h1>
             <div className = "InputField">
 
-              <div className = "FamilyNameField">
-                <label className = "TextBoxLbl_Register" >Vorname</label><br></br>
-                <input type = "Text" id= "first_name" className ="TextBox_Half" value = {this.state.first_name} placeholder ="" onChange = {this.TextInputChange} ></input>
-              </div>
-              
               <div className = "NameField">
-              <label className = "TextBoxLbl_Register"> Nachname</label><br></br>
-              <input type = "Text" id= "last_name" className ="TextBox_Half" value = {this.state.last_name} placeholder ="" onChange = {this.TextInputChange}></input>
+              <label className = "TextBoxLbl_Register"> Name</label><label className="Error">{this.state.name[2]}</label><br></br>
+              <input type = "Text" id= "name" className ={this.state.name[1]} value = {this.state.name[0]} placeholder ="" onChange = {this.TextInputChange}></input>
               </div>
 
               <div className = "StreetField">
-              <label className = "TextBoxLbl_Register">Strasse Nr.</label><br></br>
-              <input type = "Text" id= "address" className ="TextBox_Full" value = {this.state.address} placeholder ="" onChange = {this.TextInputChange} ></input>
+              <label className = "TextBoxLbl_Register">Strasse Nr.</label><label className="Error">{this.state.address[2]}</label><br></br>
+              <input type = "Text" id= "address" className ={this.state.address[1]} value = {this.state.address[0]} placeholder ="" onChange = {this.TextInputChange} ></input>
               </div>
 
               <div className = "ZIPCodeField">
-              <label className = "TextBoxLbl_Register">PLZ</label><br></br>
-              <input type = "Text" id= "zip_code" className ="TextBox_Half" value = {this.state.zip_code} placeholder ="" onChange = {this.TextInputChange} ></input>
+              <label className = "TextBoxLbl_Register">PLZ</label><label className="Error">{this.state.zip_code[2]}</label><br></br>
+              <input type = "Text" id= "zip_code" className ={this.state.zip_code[1]} value = {this.state.zip_code[0]} placeholder ="" onChange = {this.TextInputChange} ></input>
               </div>
 
               <div className = "CityField">
-              <label className = "TextBoxLbl_Register">Stadt</label><br></br>
-              <input type = "Text" id= "city" className ="TextBox_Half" value = {this.state.city} placeholder ="" onChange = {this.TextInputChange}></input>
+              <label className = "TextBoxLbl_Register">Stadt</label><label className="Error">{this.state.city[2]}</label><br></br>
+              <input type = "Text" id= "city" className ={this.state.city[1]} value = {this.state.city[0]} placeholder ="" onChange = {this.TextInputChange}></input>
               </div>
 
               <div className = "IBANField">
-              <label className = "TextBoxLbl_Register">IBAN</label><br></br>
-              <input type = "Text" id= "iban" className ="TextBox_Full" value = {this.state.iban} placeholder ="" onChange = {this.IbanTextChange} onBlur = {this.IbanTextFocusLost} ></input>
+              <label className = "TextBoxLbl_Register">IBAN</label><label className="Error">{this.state.iban[2]}</label><br></br>
+              <input type = "Text" id= "iban" className ={this.state.iban[1]} value = {this.state.iban[0]} placeholder ="" onChange = {this.IbanTextChange} ></input>
               </div>
 
               <div className = "CountryField">
-              <label className = "TextBoxLbl_Register">Land</label><br></br>
-              <input type = "Text" id= "country" className ="TextBox_Full" value = {this.state.country} placeholder ="" onChange = {this.TextInputChange} ></input>
+              <label className = "TextBoxLbl_Register">Land</label><label className="Error">{this.state.country[2]}</label><br></br>
+              <input type = "Text" id= "country" className ={this.state.country[1]} value = {this.state.country[0]} placeholder ="" onChange = {this.TextInputChange} ></input>
               </div>
 
               <div className = "EmailField">
-              <label className = "TextBoxLbl_Register">Email</label>{this.state.EmailUsed}<br></br>
-              <input type = "Text" id= "user_name" className ="TextBox_Full" value = {this.state.user_name} placeholder ="" onChange = {this.emailHasChanged}></input>
+              <label className = "TextBoxLbl_Register">Email</label><label className="Error">{this.state.user_name[2]}</label><br></br>
+              <input type = "Text" id= "user_name" className ={this.state.user_name[1]} value = {this.state.user_name[0]} placeholder ="" onChange = {this.emailHasChanged}></input>
               </div>
 
               <div className = "PasswordField">
-              <label className = "TextBoxLbl_Register">Passwort</label><br></br>
-              <input type = "Password" id= "password" className ="TextBox_Full" value = {this.state.password} onChange = {this.TextInputChange} placeholder =""></input>
+              <label className = "TextBoxLbl_Register">Passwort</label><label className="Error">{this.state.password[2]}</label><br></br>
+              <input type = "Password" id= "password" className ={this.state.password[1]} value = {this.state.password[0]} onChange = {this.TextInputChange} placeholder =""></input>
               </div>
 
               <div className = "SubmitField">
               <input className ="Btn_RegisterSubmit" type ="Button" value ="Registrieren" onClick={this.Register} readOnly></input>
               </div>
-              
-              {this.state.Iban_Verified}
-              {this.state.email_Verified}
 
             </div>
-            
-            
         </div>
       );
     }
 
     TextInputChange(e)
     {  
-      this.setState({[e.target.id] : e.target.value});
+      let newText = "";
+      if(e.target.id == "zip_code")
+      {
+        newText =stringOpperation.cleanNumbers(e.target.value).substring(0,4);
+      }
+      else
+      {
+        newText = e.target.value;
+      }
+      let newValues = [newText, this.state[e.target.id][1], this.state[e.target.id][2]];
+      if(e.target.value.length > 0)
+      {
+        newValues[1] = "TextBox_Full valid";
+        newValues[2] = "";
+      }
+      else
+      {
+        newValues[1] = "TextBox_Full invalid";
+        newValues[2] = "ist ein Pflichtfeld!";
+      }
+
+      this.setState({[e.target.id] : newValues });
     }
 
-    IbanTextChange(e)
+    async IbanTextChange(e)
     {
       let formatedIban = stringOpperation.StringAddSpace(e.target.value);
       console.log(formatedIban.length);
@@ -107,69 +113,125 @@ class Register extends React.Component {
       {
         formatedIban =formatedIban.substring(0,26);
       }
-      this.setState({[e.target.id] : formatedIban});
+      let newValues = [formatedIban, this.state[e.target.id][1], this.state[e.target.id][2]];
       if(e.target.value.length >= 25)
       {
-        this.IbanTextFocusLost(e);
+        if (await backendApi.validateIban(e.target.value))
+        {  
+          newValues[1] = "TextBox_Full valid";
+          newValues[2] = "";
+        }
+        else
+        {
+          newValues[1] = "TextBox_Full invalid";
+          newValues[2] = "ist nicht gültig!";
+        }
       }
-    }
-
-    async IbanTextFocusLost(e)
-    { 
-      if(await backendApi.validateIban(e.target.value))
-      {  
-        this.setState({Iban_Verified : <img src="./Verified.svg" className = "IbanVerification" alt ="ImgNotFlund" ></img>});
-      }
-      else
-      {
-        this.setState({Iban_Verified : <img src="./Warning.svg" className = "IbanVerification" alt ="ImgNotFlund"></img>});
-      }
+      this.setState({[e.target.id] : newValues });
     }
 
     emailHasChanged(e)
     {
-      this.setState({user_name : e.target.value});
+      let newValues = [e.target.value, this.state[e.target.id][1], this.state[e.target.id][2]];
 
-      if(stringOpperation.validateEmail(e.target.value))
+      if(stringOpperation.validateEmail(e.target.value) )
       {
-        this.setState({
-          isEmailValid: true
-        });
-        this.setState({email_Verified : <img src="./Verified.svg" className = "EmailVerification" alt ="ImgNotFlund" ></img>});
+        newValues[1] = "TextBox_Full valid";
+        newValues[2] = "";
       }
       else
       {
-        this.setState({email_Verified : <img src="./Warning.svg" className = "EmailVerification" alt ="ImgNotFlund" ></img>});
-        this.setState({
-          isEmailValid: true
-        });
+        newValues[1] = "TextBox_Full invalid";
+        newValues[2] = "ist nicht gülting";
       }
+      this.setState({[e.target.id] : newValues });
     }
 
     async Register(e)
     { 
-      let json = {
-        "first_name" : this.state.first_name ,
-        "last_name": this.state.last_name, 
-        "address": this.state.address, 
-        "zip_code":this.state.zip_code, 
-        "city":this.state.city, 
-        "iban":this.state.iban,  
-        "country": this.state.country,
-        "user_name": this.state.user_name,
-        "password": this.state.password
-        };
+      let formComplete = true;
+      if(this.state.name[0].length == 0)
+      {
+        let newValues = [this.state.name[0], this.state.name[1], "ist ein Pflichtfeld!"];
+        this.setState({name : newValues });
+        formComplete = false;
+      }
 
-      let respone = await backendApi.registerNewUser(json);
-      if(respone.status === 200)
+      if(this.state.address[0].length == 0)
       {
-        this.props.reportRegister(e);
+        let newValues = [this.state.address[0], this.state.address[1], "ist ein Pflichtfeld!"];
+        this.setState({address : newValues });
+        formComplete = false;
       }
-      else
+
+      if(this.state.zip_code[0].length == 0)
       {
-        this.setState({EmailUsed : <label className="ErrorEmailUsed">Für diese Adresse gibt es bereits ein Login</label>});
+        let newValues = [this.state.zip_code[0], this.state.zip_code[1], "ist ein Pflichtfeld!"];
+        this.setState({zip_code : newValues });
+        formComplete = false;
       }
-      
+
+
+      if(this.state.city[0].length == 0)
+      {
+        let newValues = [this.state.city[0], this.state.city[1], "ist ein Pflichtfeld!"];
+        this.setState({city : newValues });
+        formComplete = false;
+      }
+
+      if(this.state.country[0].length == 0)
+      {
+        let newValues = [this.state.country[0], this.state.country[1], "ist ein Pflichtfeld!"];
+        this.setState({country : newValues });
+        formComplete = false;
+      }
+
+      if(this.state.password[0].length == 0)
+      {
+        let newValues = [this.state.password[0], this.state.password[1], "ist ein Pflichtfeld!"];
+        this.setState({password : newValues });
+        formComplete = false;
+      }
+
+      if(this.state.iban[2].indexOf("valid") == -1)
+      {
+        let newValues = [this.state.iban[0], this.state.iban[1], "ist nicht gültig!"];
+        this.setState({iban : newValues });
+        formComplete = false;
+      }
+
+      if(this.state.user_name[2].indexOf("valid") == -1)
+      {
+        let newValues = [this.state.user_name[0], this.state.user_name[1], "ist nicht gültig!"];
+        this.setState({user_name : newValues });
+        formComplete = false;
+      }
+
+
+      if(formComplete)
+      {
+        let json = {
+          "name" : this.state.name[0],
+          "address": this.state.address[0], 
+          "zip_code":this.state.zip_code[0], 
+          "city":this.state.city[0], 
+          "iban":this.state.iban[0],  
+          "country": this.state.country[0],
+          "user_name": this.state.user_name[0],
+          "password": this.state.password[0]
+          };
+  
+        let respone = await backendApi.registerNewUser(json);
+        if(respone.status === 200)
+        {
+          this.props.reportRegister(e);
+        }
+        else
+        {
+          let newValues = [this.state.user_name[0], this.state.user_name[1], "Für diese Email besteht schon ein Login!"];
+          this.setState({user_name : newValues });
+        }
+      }
     }
   }
   

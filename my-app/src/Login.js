@@ -70,7 +70,7 @@ class Login extends React.Component {
         }
         else
         {
-          this.setState({errorText : <h2 className="errorText">Email oder Passwort flasch!</h2>});
+          this.setState({errorText : <h2 className="errorText">Email oder Passwort falsch!</h2>});
         }
     }
 

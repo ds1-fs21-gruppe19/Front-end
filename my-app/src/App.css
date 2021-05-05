@@ -23,3 +23,17 @@ body{
   padding-top: 100px;
   width: 1281px;
 }
+
+.valid
+{
+  border-color: #2196F3;;
+  border-style: solid;
+
+
+}
+
+.invalid
+{
+  border-color: #F56451;
+  border-style: solid;
+}
