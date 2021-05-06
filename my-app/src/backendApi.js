@@ -5,22 +5,6 @@ class backendApi extends basicRestRequests
 { 
     static #baseUrl = "http://127.0.0.1:8000/";
 
-    static async validateIban(iban)
-    {
-      iban = iban.replace(/ /g, "").toUpperCase();
-      if(iban.length > 0)
-      {
-        let request = "https://openiban.com/validate/" + iban + "?validateBankCode=true&getBIC=true";
-        let respone = await this.GetRequest(request);
-        let data = JSON.parse(respone);
-        return data.valid;
-      }
-      else
-      {
-        return false;
-      }
-
-    }
 
 
     static async getPDF(json)
@@ -51,14 +35,14 @@ class backendApi extends basicRestRequests
     static async getCurrentUsers(jwt)
     {
       let url = this.#baseUrl + "users";
-      let result = await this.GetRequest(url,jwt);
+      let result = await this.GetRequestWithJWT(url,jwt);
       return result;
     }
 
     static async createNewUser(json, jwt)
     {
       let url = this.#baseUrl + "create-user";
-      let result = await this.PostRequest(url, json, jwt);
+      let result = await this.PostRequestWithJWT(url, json, jwt);
       return result;
     }
 

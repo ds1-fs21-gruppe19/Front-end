@@ -82,7 +82,7 @@ class Register extends React.Component {
     TextInputChange(e)
     {  
       let newText = "";
-      if(e.target.id == "zip_code")
+      if(e.target.id === "zip_code")
       {
         newText =stringOpperation.cleanNumbers(e.target.value).substring(0,4);
       }
@@ -116,7 +116,7 @@ class Register extends React.Component {
       let newValues = [formatedIban, this.state[e.target.id][1], this.state[e.target.id][2]];
       if(e.target.value.length >= 25)
       {
-        if (await backendApi.validateIban(e.target.value))
+        if (stringOpperation.validateIban(e.target.value))
         {  
           newValues[1] = "TextBox_Full valid";
           newValues[2] = "";
@@ -150,21 +150,21 @@ class Register extends React.Component {
     async Register(e)
     { 
       let formComplete = true;
-      if(this.state.name[0].length == 0)
+      if(this.state.name[0].length === 0)
       {
         let newValues = [this.state.name[0], this.state.name[1], "ist ein Pflichtfeld!"];
         this.setState({name : newValues });
         formComplete = false;
       }
 
-      if(this.state.address[0].length == 0)
+      if(this.state.address[0].length === 0)
       {
         let newValues = [this.state.address[0], this.state.address[1], "ist ein Pflichtfeld!"];
         this.setState({address : newValues });
         formComplete = false;
       }
 
-      if(this.state.zip_code[0].length == 0)
+      if(this.state.zip_code[0].length === 0)
       {
         let newValues = [this.state.zip_code[0], this.state.zip_code[1], "ist ein Pflichtfeld!"];
         this.setState({zip_code : newValues });
@@ -172,35 +172,35 @@ class Register extends React.Component {
       }
 
 
-      if(this.state.city[0].length == 0)
+      if(this.state.city[0].length === 0)
       {
         let newValues = [this.state.city[0], this.state.city[1], "ist ein Pflichtfeld!"];
         this.setState({city : newValues });
         formComplete = false;
       }
 
-      if(this.state.country[0].length == 0)
+      if(this.state.country[0].length === 0)
       {
         let newValues = [this.state.country[0], this.state.country[1], "ist ein Pflichtfeld!"];
         this.setState({country : newValues });
         formComplete = false;
       }
 
-      if(this.state.password[0].length == 0)
+      if(this.state.password[0].length === 0)
       {
         let newValues = [this.state.password[0], this.state.password[1], "ist ein Pflichtfeld!"];
         this.setState({password : newValues });
         formComplete = false;
       }
 
-      if(this.state.iban[2].indexOf("valid") == -1)
+      if(this.state.iban[2].indexOf("valid") === -1)
       {
         let newValues = [this.state.iban[0], this.state.iban[1], "ist nicht gültig!"];
         this.setState({iban : newValues });
         formComplete = false;
       }
 
-      if(this.state.user_name[2].indexOf("valid") == -1)
+      if(this.state.user_name[2].indexOf("valid") === -1)
       {
         let newValues = [this.state.user_name[0], this.state.user_name[1], "ist nicht gültig!"];
         this.setState({user_name : newValues });

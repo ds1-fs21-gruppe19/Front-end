@@ -16,7 +16,7 @@ class basicRestRequests
       });
     }
 
-    static PostRequest(url , json ,JWT) {
+    static PostRequestWithJWT(url , json ,JWT) {
         console.log(url);
         let data = JSON.stringify(json);
       return new Promise(function (resolve, reject) {
@@ -36,7 +36,6 @@ class basicRestRequests
         console.log(url);
       return new Promise(function (resolve, reject) {
           let xhr = new XMLHttpRequest();
-          xhr.withCredentials = true;
           xhr.open("GET", url);
           xhr.onload = function () {
               resolve(xhr.response);
@@ -45,7 +44,7 @@ class basicRestRequests
       });
     }
 
-    static GetRequest(url, JWT) {
+    static GetRequestWithJWT(url, JWT) {
         console.log(url);
       return new Promise(function (resolve, reject) {
           let xhr = new XMLHttpRequest();

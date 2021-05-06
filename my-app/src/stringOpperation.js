@@ -105,6 +105,60 @@ class stringOpperation{
       return regex1.test(str);
     }
 
+    static isQRIban(str)
+    {
+      let id = parseInt(str.replace(/( )|(\D)/g, "").substring(4,9));
+      if(id >= 30000 && id <= 31999)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
+
+    static validateIban(iban)
+    {
+      console.time("Duration to verify Iban");
+      iban = iban.replace(/ /g, "").toUpperCase();
+      iban = iban.replace(/CH/g, "1217");
+      iban = iban.replace(/LU/g, "2130");
+
+      if(parseInt(iban.substring(4,6)) === parseInt(98 - this.modulus(iban.substring(6) + iban.substring(0,4) + "00")))
+      {
+        console.log("Iban is Valid!");
+        console.timeEnd("Duration to verify Iban");
+        return true;
+      }
+      else
+      {
+        console.log("Iban is  not Valid!");
+        console.timeEnd("Duration to verify Iban");
+        return false;
+      }
+
+    }
+
+    
+    static modulus(str , divideBy = "97")
+    {
+        let cleanNumberStirng = str;
+        while(cleanNumberStirng[0] === "0")
+        {
+            cleanNumberStirng = cleanNumberStirng.substring(1);
+        }
+        //console.log("InputNumber: " + cleanNumberStirng);
+        let rest = "";
+        for(var i = 0 ; i < cleanNumberStirng.length; i++)
+        {
+            rest =   rest + cleanNumberStirng[i];
+            console.log("Rest: " + rest);
+            rest = parseInt(rest) % parseInt(divideBy);
+        }
+        return rest;
+    }
+
 }
 
 export default stringOpperation;

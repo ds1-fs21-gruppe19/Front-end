@@ -8,33 +8,28 @@ class Invoice extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          Receiver_IBAN: "", 
-          Iban_Verified: <img alt="Warnings" hidden></img>,
-          Receiver_Name: "", 
-          Receiver_Name_Verified: <img alt="Warnings" hidden></img>,
-          Receiver_Street: "", 
-          Receiver_StreetVerified: <img alt="Warnings" hidden></img>,
-          Receiver_City:"", 
-          Receiver_City_Verified: <img alt="Warnings" hidden></img>,
-          Receiver_Ref:"", 
-          Receiver_Ref_Verified: <img alt="Warnings" hidden></img>,
-          AdditionalInfo:"",  
-          FromName: "",
-          FromName_Verified: <img alt="Warnings" hidden></img>,
-          FromStreet: "",
-          FromStreet_Verified: <img alt="Warnings" hidden></img>,
-          FromCity: "",
-          FromCity_Verified: <img alt="Warnings" hidden></img>,
-          Amount: "",
-          Amount_Verified: <img alt="Warnings" hidden></img>,
-          Currency: "CHF"
+          creditor_iban: ["CH4000777003656120095", "TextBox_Medium",""],
+          creditor_name: ["Tobias Rothlin", "TextBox_Medium",""],
+          creditor_address: ["Peterliwiese 33", "TextBox_Medium",""],
+          creditor_zip_code: ["8855", "TextBox_Small",""],
+          creditor_city: ["Wangen SZ", "TextBox_Small",""],
+          creditor_country: ["", "TextBox_Medium",""],
+          debtor_name: ["Lukas Rothlin", "TextBox_Medium",""],
+          debtor_address: ["Perterliwiese 33", "TextBox_Medium",""],
+          debtor_zip_code: ["8855", "TextBox_Small",""],
+          debtor_city: ["Wangen SZ", "TextBox_Small",""],
+          debtor_country: ["", "TextBox_Medium",""],
+          amount: ["100.00", "TextBox_Medium",""],
+          currency: ["CHF", "TextBox_Medium",""],
+          reference_type: ["", "TextBox_Medium",""],
+          reference_number: ["", "TextBox_Medium",""],
+          additional_information: ["", "TextBox_Medium",""]
         }
         this.TextInputChange = this.TextInputChange.bind(this);
         this.DownloadClick = this.DownloadClick.bind(this);
         this.dropDownChange = this.dropDownChange.bind(this);
 
         this.IbanTextChange = this.IbanTextChange.bind(this);
-        this.IbanTextFocusLost = this.IbanTextFocusLost.bind(this);
 
         this.AmoutTextChange = this.AmoutTextChange.bind(this);
         this.AmountTextFocusLost = this.AmountTextFocusLost.bind(this);
@@ -64,23 +59,24 @@ class Invoice extends React.Component {
 
                 <div className = "AddressReceiverRight">
                   <h6>Konto/Zahlbar an</h6>
-                  <input type = "Text" id= "Receiver_IBAN" className ="TextBox_Medium" value = {this.state.Receiver_IBAN} placeholder ="IBAN Nummer" onChange = {this.IbanTextChange} onBlur = {this.IbanTextFocusLost} ></input> {this.state.Iban_Verified}
+                  <input type = "Text" id= "creditor_iban" className ={this.state.creditor_iban[1]} value = {this.state.creditor_iban[0]} placeholder ="IBAN Nummer" onChange = {this.IbanTextChange} onBlur = {this.IbanTextChange} ></input><label className = "Error">{this.state.creditor_iban[2]}</label>
                   <br></br>
-                  <input type = "Text" id= "Receiver_Name" className ="TextBox_Medium" value = {this.state.Receiver_Name} placeholder ="Vorname Nachname" onChange = {this.TextInputChange}></input>{this.state.Receiver_Name_Verified}
+                  <input type = "Text" id= "creditor_name" className ={this.state.creditor_name[1]} value = {this.state.creditor_name[0]} placeholder ="Vorname Nachname" onChange = {this.TextInputChange}></input><label className = "Error">{this.state.creditor_name[2]}</label>
                   <br></br>
-                  <input type = "Text" id= "Receiver_Street" className ="TextBox_Medium" value = {this.state.Receiver_Street} placeholder ="Strasse Nr." onChange = {this.TextInputChange}></input>{this.state.Receiver_Street_Verified}
+                  <input type = "Text" id= "creditor_address" className ={this.state.creditor_address[1]} value = {this.state.creditor_address[0]} placeholder ="Strasse Nr." onChange = {this.TextInputChange}></input><label className = "Error">{this.state.creditor_address[2]}</label>
                   <br></br>
-                  <input type = "Text" id= "Receiver_City" className ="TextBox_Medium" value = {this.state.Receiver_City} placeholder ="PLZ Wohnort" onChange = {this.TextInputChange}></input>{this.state.Receiver_City_Verified}
+                  <input type = "Text" id= "creditor_zip_code" className ={this.state.creditor_zip_code[1]} value = {this.state.creditor_zip_code[0]} placeholder ="PLZ" onChange = {this.TextInputChange}></input>
+                  <input type = "Text" id= "creditor_city" className ={this.state.creditor_city[1]} value = {this.state.creditor_city[0]} placeholder ="Wohnort" onChange = {this.TextInputChange}></input><label className = "Error">{this.state.creditor_zip_code[2]}</label><label className = "Error">{this.state.creditor_city[2]}</label>
                 </div>
 
                 <div className ="AddressReceiverLeft">
                   <h7>Konto/Zahlbar an</h7>
                   <br></br>
                   <label id = "ReceiverAddress">
-                    {this.state.Receiver_IBAN} <br></br>
-                    {this.state.Receiver_Name} <br></br>
-                    {this.state.Receiver_Street}<br></br>
-                    {this.state.Receiver_City}
+                    {this.state.creditor_iban[0]} <br></br>
+                    {this.state.creditor_name[0]} <br></br>
+                    {this.state.creditor_address[0]}<br></br>
+                    {this.state.creditor_zip_code[0] + " " + this.state.creditor_city[0]}
                   </label>
                 </div>
 
@@ -90,49 +86,50 @@ class Invoice extends React.Component {
 
                 <div className = "ReferenzRight">
                   <h6>Referenz</h6>
-                  <input type = "Text" id= "Receiver_Ref" className ="TextBox_Medium" value = {this.state.Receiver_Ref} placeholder ="Referenz Nummer" onChange = {this.TextInputChange}></input>{this.state.Receiver_Ref_Verified}
+                  <input type = "Text" id= "reference_number" className ={this.state.reference_number[1]} value = {this.state.reference_number[0]} placeholder ="Referenz Nummer" onChange = {this.TextInputChange}></input><label className = "Error">{this.state.reference_number[2]}</label>
                 </div>
 
                 <div className = "ReferenzLeft">
                   <h7>Referenz</h7>
                   <br></br>
-                  <label id = "ReerenzLeft">{this.state.Receiver_Ref} </label>
+                  <label id = "ReerenzLeft">{this.state.reference_number[0]} </label>
                 </div>
 
                 <div className ="FromAddressLeft">
                   <h7>Zahlbar durch</h7>
                     <br></br>
                     <label id = "FromAddress">
-                    {this.state.FromName}<br></br>
-                    {this.state.FromStreet}<br></br>
-                    {this.state.FromCity}<br></br>
+                    {this.state.debtor_name[0]}<br></br>
+                    {this.state.debtor_address[0]}<br></br>
+                    {this.state.debtor_zip_code[0] + " " + this.state.debtor_city[0]}<br></br>
                     </label>
                 </div>
 
                 <div className = "AdditionalInformation">
                   <h6>Zusätzliche Informationen</h6>
-                  <input type = "Text" id= "AdditionalInfo" className ="TextBox_Medium" value = {this.state.AdditionalInfo} placeholder ="Zusätzliche Infromation" onChange = {this.TextInputChange}></input>
+                  <input type = "Text" id= "additional_information" className ={this.state.additional_information[1]} value = {this.state.additional_information[0]} placeholder ="Zusätzliche Infromation" onChange = {this.TextInputChange}></input><label className = "Error">{this.state.additional_information[2]}</label>
                 </div>
 
                 <div className = "FromAddressRight">
                   <h6>Zahlbar durch</h6>
-                  <input type = "Text" id= "FromName" className ="TextBox_Medium" value = {this.state.FromName} placeholder ="Name" onChange = {this.TextInputChange}></input>{this.state.FromName_Verified}
+                  <input type = "Text" id= "debtor_name" className ={this.state.debtor_name[1]} value = {this.state.debtor_name[0]} placeholder ="Name" onChange = {this.TextInputChange}></input><label className = "Error">{this.state.debtor_name[2]}</label>
                   <br></br>
-                  <input type = "Text" id= "FromStreet" className ="TextBox_Medium" value = {this.state.FromStreet}  placeholder ="Strasse Nr." onChange = {this.TextInputChange}></input>{this.state.FromStreet_Verified}
+                  <input type = "Text" id= "debtor_address" className ={this.state.debtor_address[1]} value = {this.state.debtor_address[0]}  placeholder ="Strasse Nr." onChange = {this.TextInputChange}></input><label className = "Error">{this.state.debtor_address[2]}</label>
                   <br></br>
-                  <input type = "Text" id= "FromCity" className ="TextBox_Medium" value = {this.state.FromCity} placeholder ="PLZ Wohnort" onChange = {this.TextInputChange}></input>{this.state.FromCity_Verified}
+                  <input type = "Text" id= "debtor_zip_code" className ={this.state.debtor_zip_code[1]} value = {this.state.debtor_zip_code[0]} placeholder ="PLZ" onChange = {this.TextInputChange}></input>
+                  <input type = "Text" id= "debtor_city" className ={this.state.debtor_city[1]} value = {this.state.debtor_city[0]} placeholder ="Wohnort" onChange = {this.TextInputChange}></input><label className = "Error">{this.state.debtor_zip_code[2]}</label><label className = "Error">{this.state.debtor_city[2]}</label>
                 </div>
 
                 <div className = "AmountLeft">
                   <div className = "AmountLeft_ColumnLeft">
                     <h7>Währung</h7>
                     <br></br>
-                    <label>{this.state.Currency}</label>
+                    <label>{this.state.currency[0]}</label>
                   </div>
                   <div className = "AmountLeft_ColumnRight">
                     <h7>Betrag</h7>
                     <br></br>
-                    <label id = "AmountLeft">{this.state.Amount}</label>
+                    <label id = "AmountLeft">{this.state.amount[0]}</label>
                   </div>
                 </div>
 
@@ -151,7 +148,7 @@ class Invoice extends React.Component {
                   <div className = "AmountRight_ColumnRight">
                     <h6>Betrag</h6>
                     <br></br>
-                    <input type = "Text" id= "Amount" className ="TextBox_Medium" value = {this.state.Amount} placeholder ="Betrag" onChange = {this.AmoutTextChange} onBlur ={this.AmountTextFocusLost}></input>{this.state.Amount_Verified}
+                    <input type = "Text" id= "amount" className ={this.state.amount[1]} value = {this.state.amount[0]} placeholder ="Betrag" onChange = {this.AmoutTextChange} onBlur ={this.AmountTextFocusLost}></input><label className = "Error">{this.state.amount[2]}</label>
                   </div>
                 </div>
             </div>
@@ -173,10 +170,31 @@ class Invoice extends React.Component {
 
     TextInputChange(e)
     {  
-      this.setState({[e.target.id] : e.target.value});
+      let newText = "";
+      if(e.target.id.indexOf("zip_code") > -1)
+      {
+        newText =stringOpperation.cleanNumbers(e.target.value).substring(0,4);
+      }
+      else
+      {
+        newText = e.target.value;
+      }
+      let newValues = [newText, this.state[e.target.id][1], this.state[e.target.id][2]];
+      if(e.target.value.length > 0)
+      {
+        newValues[1] = newValues[1].split(" ")[0] + " valid";
+        newValues[2] = "";
+      }
+      else
+      {
+        newValues[1] = newValues[1].split(" ")[0] + " invalid";
+        newValues[2] = "Dies ist ein Pflichtfeld!";
+      }
+
+      this.setState({[e.target.id] : newValues });
     }
 
-    IbanTextChange(e)
+    async IbanTextChange(e)
     {
       let formatedIban = stringOpperation.StringAddSpace(e.target.value);
       console.log(formatedIban.length);
@@ -184,64 +202,190 @@ class Invoice extends React.Component {
       {
         formatedIban =formatedIban.substring(0,26);
       }
-      this.setState({[e.target.id] : formatedIban});
+      let newValues = [formatedIban, this.state[e.target.id][1], this.state[e.target.id][2]];
       if(e.target.value.length >= 25)
       {
-        this.IbanTextFocusLost(e);
+        if (stringOpperation.validateIban(e.target.value))
+        {  
+          newValues[1] = newValues[1].split(" ")[0] + " valid";
+          newValues[2] = "";
+        }
+        else
+        {
+          newValues[1] = newValues[1].split(" ")[0] + " invalid";
+          newValues[2] = "Die Iban ist nicht gültig!";
+        }
       }
-    }
-
-    async IbanTextFocusLost(e)
-    { 
-      if(await backendApi.validateIban(e.target.value))
-      {  
-        this.setState({Iban_Verified : <img src="./Verified.svg" className = "IconImgs" alt ="ImgNotFlund" ></img>});
-      }
-      else
-      {
-        this.setState({Iban_Verified : <img src="./Warning.svg" className = "IconImgs" alt ="ImgNotFlund"></img>});
-      }
+      this.setState({[e.target.id] : newValues });
     }
 
     AmountTextFocusLost(e)
     {
-      let FormatedAmount = stringOpperation.formatValue(e.target.value);
-      this.setState({[e.target.id] : FormatedAmount});
+      let formatedAmount = stringOpperation.formatValue(e.target.value);
+      let newValues = [formatedAmount, this.state[e.target.id][1], this.state[e.target.id][2]];
+      this.setState({[e.target.id] : newValues });
     }
 
 
     AmoutTextChange(e)
     {
       let formatedAmount = stringOpperation.cleanNumbers(e.target.value);
-      this.setState({[e.target.id] : formatedAmount});
+      let newValues = [formatedAmount, this.state[e.target.id][1], this.state[e.target.id][2]];
+      this.setState({[e.target.id] : newValues });
     }
 
 
     async DownloadClick(e)
     { 
-      let json = {
-        "InvoiceInfo":{
-          "Receiver_IBAN" : this.state.Receiver_IBAN ,
-          "Receiver_Name": this.state.Receiver_Name, 
-          "Receiver_Street": this.state.Receiver_Street, 
-          "Receiver_City":this.state.Receiver_City, 
-          "Receiver_Ref":this.state.Receiver_Ref, 
-          "AdditionalInfo":this.state.AdditionalInfo,  
-          "FromName": this.state.FromName,
-          "FromStreet": this.state.FromStreet,
-          "FromCity": this.state.FromCity,
-          "Amount": this.state.Amount
-        },
-        "MetaData": {
-          "NumberOfPages" : 1
+      let formComplete = true;
+
+      if(this.state.creditor_iban[1].indexOf("valid") === -1)
+      {
+        let newValues = [this.state.creditor_iban[0], this.state.creditor_iban[1], "Iban nicht gülting"];
+        this.setState({creditor_iban : newValues });
+        formComplete = false;
+        console.log(this.state.creditor_iban[2]);
+      }
+
+      if(this.state.creditor_name[0].length === 0)
+      {
+        let newValues = [this.state.creditor_name[0], this.state.creditor_name[1], "Pflichtfeld!"];
+        this.setState({creditor_name : newValues });
+        formComplete = false;
+      }
+
+      if(this.state.creditor_address[0].length === 0)
+      {
+        let newValues = [this.state.creditor_address[0], this.state.creditor_address[1], "Pflichtfeld!"];
+        this.setState({creditor_address : newValues });
+        formComplete = false;
+      }
+
+      if(this.state.creditor_zip_code[0].length === 0 && this.state.creditor_city[0].length === 0 )
+      {
+        let newValues = [this.state.creditor_zip_code[0], this.state.creditor_zip_code[1], "Pflichtfeld!"];
+        this.setState({creditor_zip_code : newValues });
+        formComplete = false;
+      }
+
+      else if(this.state.creditor_city[0].length === 0)
+      {
+        let newValues = [this.state.creditor_city[0], this.state.creditor_city[1], "Pflichtfeld!"];
+        this.setState({creditor_city : newValues });
+        formComplete = false;
+      }
+
+      else if(this.state.creditor_city[0].length === 0)
+      {
+        let newValues = [this.state.creditor_city[0], this.state.creditor_city[1], "Pflichtfeld!"];
+        this.setState({creditor_city : newValues });
+        formComplete = false;
+      }
+
+      if(this.state.debtor_name[0].length === 0)
+      {
+        let newValues = [this.state.debtor_name[0], this.state.debtor_name[1], "Pflichtfeld!"];
+        this.setState({debtor_name : newValues });
+        formComplete = false;
+      }
+
+      if(this.state.debtor_address[0].length === 0)
+      {
+        let newValues = [this.state.debtor_address[0], this.state.debtor_address[1], "Pflichtfeld!"];
+        this.setState({debtor_address : newValues });
+        formComplete = false;
+      }
+
+      if(this.state.debtor_zip_code[0].length === 0 && this.state.debtor_city[0].length === 0 )
+      {
+        let newValues = [this.state.debtor_zip_code[0], this.state.debtor_zip_code[1], "Pflichtfeld!"];
+        this.setState({debtor_zip_code : newValues });
+        formComplete = false;
+      }
+
+      else if(this.state.debtor_zip_code[0].length === 0)
+      {
+        let newValues = [this.state.debtor_zip_code[0], this.state.debtor_zip_code[1], "Pflichtfeld!"];
+        this.setState({debtor_zip_code : newValues });
+        formComplete = false;
+      }
+
+      else if(this.state.debtor_city[0].length === 0)
+      {
+        let newValues = [this.state.debtor_city[0], this.state.debtor_city[1], "Pflichtfeld!"];
+        this.setState({debtor_city : newValues });
+        formComplete = false;
+      }
+
+      if(this.state.amount[0].length === 0)
+      {
+        let newValues = [this.state.amount[0], this.state.amount[1], "Pflichtfeld!"];
+        this.setState({amount : newValues });
+        formComplete = false;
+      }
+
+      let ref = "";
+      
+      if(stringOpperation.isQRIban(this.state.creditor_iban[0]))
+      {
+        ref = "QRR";
+        if(!(this.state.reference_number[0].length === 27 || /^\d+$/.test(this.state.reference_number[0])))
+        {
+          let newValues = [this.state.reference_number[0], this.state.reference_number[1], "Es gibt einnen Fehler mit der Referenz Nummer"];
+          this.setState({reference_number : newValues });
+          formComplete = false;
         }
+      }
+      else if(this.state.reference_number[0].length > 0)
+      {
+        ref = "SCOR";
+        if(!(this.state.reference_number[0].length >= 5 && this.state.reference_number[0].length <= 25))
+        {
+          let newValues = [this.state.reference_number[0], this.state.reference_number[1], "Es gibt einnen Fehler mit der Referenz Nummer"];
+          this.setState({reference_number : newValues });
+          formComplete = false;
+        }
+      }
+      else
+      {
+        ref = "NON";
+      }
+      
+      let newValues = [ref, this.state.reference_type[1], ""];
+      this.setState({reference_type : newValues });
+
+      if(formComplete)
+      {
+
+
+        let json = {
+          "creditor_iban": this.state.creditor_iban[0],
+          "creditor_name": this.state.creditor_name[0],
+          "creditor_address": this.state.creditor_address[0],
+          "creditor_zip_code": this.state.creditor_zip_code[0],
+          "creditor_city": this.state.creditor_city[0],
+          "creditor_country": this.state.creditor_iban[0].substring(0,2),
+          "debtor_name": this.state.debtor_name[0],
+          "debtor_address": this.state.debtor_address[0],
+          "debtor_zip_code": this.state.debtor_zip_code[0],
+          "debtor_city": this.state.debtor_city[0],
+          "debtor_country": this.state.creditor_iban[0].substring(0,2),
+          "amount": this.state.amount[0],
+          "currency": this.state.currency[0],
+          "reference_type": this.state.reference_type[0],
+          "reference_number": this.state.reference_number[0],
+          "additional_information": this.state.additional_information[0]
         };
-      let result = await backendApi.getPDF(json);
+        console.log(json);
+        let result = await backendApi.getPDF(json);
+        
+      } 
     }
 
     dropDownChange(e)
     {
-      this.setState({Currency : e.target.value});
+      let newValues = [e.target.value, this.state.currency[1], this.state.currency[2]];
+      this.setState({currency : newValues });
     }
 
     

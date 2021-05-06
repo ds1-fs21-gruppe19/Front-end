@@ -96,6 +96,31 @@
         transform: translateY(-2px);
     }
 
+    .TextBox_Small
+    {
+        font-size: 20px;
+        padding-left: 0px;
+        width: 147px;
+        padding: 0px;
+        margin: 1px;
+        transition: all 0.3s ease 0s;
+        background-color: transparent;
+        border-style: solid;
+        border-color: #999999;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .TextBox_Small:hover
+    {
+        transform: translateY(-2px);
+    }
+
+    .TextBox_Small:focus
+    {
+        color: #242424;
+        transform: translateY(-2px);
+    }
+
 
 
     label{

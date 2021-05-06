@@ -34,7 +34,7 @@ class Footer extends React.Component {
 
     LegalButtonPressed(e)
     {   
-        if(this.state.infoState != "Legal")
+        if(this.state.infoState !== "Legal")
         {
             this.setState({additionalInfo :
                 <h2 className="AdditionalInfoText">© 2021 Robin Friedli, Linard Vincenz, Tobias Rothlin. All rights reserved. Use of this site constitutes acceptance of our User Agreement and Privacy Policy and Cookie Statement. This site may earn a portion of sales from products that are purchased through our site as part of our Affiliate Partnerships with retailers. The material on this site may not be reproduced, distributed, transmitted, cached or otherwise used, except with the prior written permission of Robin Friedli, Linard Vincenz or Tobias Rothlin. Ad Choices</h2>
@@ -59,7 +59,7 @@ class Footer extends React.Component {
 
     PrivacyButtonPressed(e)
     {
-        if(this.state.infoState != "Privacy")
+        if(this.state.infoState !== "Privacy")
         {
             this.setState({additionalInfo :
                 <h2 className="AdditionalInfoText">Currently no privacy on this page</h2>
