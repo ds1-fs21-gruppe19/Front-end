@@ -107,7 +107,8 @@ class stringOpperation{
 
     static isQRIban(str)
     {
-      let id = parseInt(str.replace(/( )|(\D)/g, "").substring(4,9));
+      let id = parseInt(str.replace(/( )|(\D)/g, "").substring(2,7));
+      console.log(id);
       if(id >= 30000 && id <= 31999)
       {
         return true;

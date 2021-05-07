@@ -15,7 +15,7 @@ var myAccouncts = {
                 "address": "Peterliwiese 33",
                 "zip_code": "8855",
                 "city": "WangenSZ",
-                "iban":"CH40007770036561200095",
+                "iban":"CH4000777003656120095",
                 "country": "CH"
             },
             {
@@ -23,16 +23,16 @@ var myAccouncts = {
                 "address": "Thomas More St",
                 "zip_code": "E1W 1YW",
                 "city": "London",
-                "iban": "CH40007770036561200095",
-                "country": "UK"
+                "iban": "CH9830781624909502000",
+                "country": "CH"
             },
             {
                 "name": "Test User",
                 "address": "Downing Street 10",
                 "zip_code": "SW1",
                 "city": "London",
-                "iban": "CH40007770036561200095",
-                "country": "UK"
+                "iban": "CH4000777003656120095",
+                "country": "CH"
             }
 
         ]

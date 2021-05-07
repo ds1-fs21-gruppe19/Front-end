@@ -8,19 +8,19 @@ class Invoice extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          creditor_iban: ["CH4000777003656120095", "TextBox_Medium",""],
-          creditor_name: ["Tobias Rothlin", "TextBox_Medium",""],
-          creditor_address: ["Peterliwiese 33", "TextBox_Medium",""],
-          creditor_zip_code: ["8855", "TextBox_Small",""],
-          creditor_city: ["Wangen SZ", "TextBox_Small",""],
+          creditor_iban: ["", "TextBox_Medium",""],
+          creditor_name: ["", "TextBox_Medium",""],
+          creditor_address: ["", "TextBox_Medium",""],
+          creditor_zip_code: ["", "TextBox_Small",""],
+          creditor_city: ["", "TextBox_Small",""],
           creditor_country: ["", "TextBox_Medium",""],
-          debtor_name: ["Lukas Rothlin", "TextBox_Medium",""],
-          debtor_address: ["Perterliwiese 33", "TextBox_Medium",""],
-          debtor_zip_code: ["8855", "TextBox_Small",""],
-          debtor_city: ["Wangen SZ", "TextBox_Small",""],
+          debtor_name: ["", "TextBox_Medium",""],
+          debtor_address: ["", "TextBox_Medium",""],
+          debtor_zip_code: ["", "TextBox_Small",""],
+          debtor_city: ["", "TextBox_Small",""],
           debtor_country: ["", "TextBox_Medium",""],
-          amount: ["100.00", "TextBox_Medium",""],
-          currency: ["CHF", "TextBox_Medium",""],
+          amount: ["", "TextBox_Medium",""],
+          currency: ["", "TextBox_Medium",""],
           reference_type: ["", "TextBox_Medium",""],
           reference_number: ["", "TextBox_Medium",""],
           additional_information: ["", "TextBox_Medium",""],
@@ -50,12 +50,17 @@ class Invoice extends React.Component {
           options.push( <div><button onClick={this.dropDownButtonPressed} id={counter}>{user.iban}</button><br></br></div>);
           counter++;
         }
-        dropdown = <div class="dropdown">
-          <button class="dropbtn">{this.state.currentSelectedIban}<img src="./Dropdown.svg" className="DropdownImg"></img></button>
-          <div class="dropdown-content">
-            {options}
+        dropdown = <div>
+            <label className="LabelDropdown">Konto/Zahlbar an:</label>
+            <div class="dropdown">
+            
+            <button class="dropbtn">{this.state.currentSelectedIban}<img src="./Dropdown.svg" className="DropdownImg"></img></button>
+            <div class="dropdown-content">
+              {options}
+            </div>
           </div>
         </div>
+        
       }
       return (
         <div className = "Invoice-Slip">
@@ -348,7 +353,7 @@ class Invoice extends React.Component {
       }
 
       let ref = "";
-      
+      console.log(stringOpperation.isQRIban(this.state.creditor_iban[0]));
       if(stringOpperation.isQRIban(this.state.creditor_iban[0]))
       {
         ref = "QRR";
@@ -371,6 +376,8 @@ class Invoice extends React.Component {
       }
       else
       {
+        let newValues = [this.state.reference_number[0], this.state.reference_number[1], ""];
+        this.setState({reference_number : newValues });
         ref = "NON";
       }
       
@@ -416,7 +423,7 @@ class Invoice extends React.Component {
       console.log(e.target.id);
       this.setState({
         currentSelectedIban: this.props.userdata[e.target.id].iban,
-        creditor_iban: [this.props.userdata[e.target.id].iban, "TextBox_Medium",""],
+        creditor_iban: [stringOpperation.StringAddSpace(this.props.userdata[e.target.id].iban), "TextBox_Medium valid",""],
         creditor_name: [this.props.userdata[e.target.id].name, "TextBox_Medium",""],
         creditor_address: [this.props.userdata[e.target.id].address, "TextBox_Medium",""],
         creditor_zip_code: [this.props.userdata[e.target.id].zip_code, "TextBox_Small",""],

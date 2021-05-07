@@ -249,8 +249,14 @@
     .dropdown {
         position: relative;
         display: inline-block;
+        transition: all 0.3s ease 0s;
     }
     
+
+    .dropdown:hover
+    {
+        transform: translateY(-5px);
+    }
     /* Dropdown Content (Hidden by Default) */
     .dropdown-content {
         display: none;
@@ -283,11 +289,13 @@
     /* Show the dropdown menu on hover */
     .dropdown:hover .dropdown-content {
         display: block;
+        
     }
     
     /* Change the background color of the dropdown button when the dropdown content is shown */
     .dropdown:hover .dropbtn {
         background-color: #1b7ecf;
+        color: rgb(113, 184, 241);
 
     }
 
@@ -301,5 +309,10 @@
 
     .dropdown:hover .DropdownImg {
         transform: translateY(2px) rotate(180deg) ;
-        opacity: 0.2;
+        opacity: 0;
+    }
+
+    .LabelDropdown
+    {
+        margin-right: 10px;
     }
