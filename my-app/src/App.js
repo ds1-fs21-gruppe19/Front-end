@@ -6,6 +6,7 @@ import Header from './Header.js';
 import Footer from './Footer.js';
 import Register from './Register.js';
 import MyAccount from './MyAccount.js';
+import backendApi from './backendApi';
 
 class App extends React.Component
 { 
@@ -17,7 +18,8 @@ class App extends React.Component
       jwttoken: "",
       experationTime : 0,
       userName : "",
-      showLogin : true
+      showLogin : true,
+      Users:[]
     }
     this.reportLogin = this.reportLogin.bind(this);
     this.reportLoginPressed = this.reportLoginPressed.bind(this);
@@ -49,9 +51,9 @@ class App extends React.Component
     );
   }
 
-  reportLogin(e)
+  async reportLogin(e)
   {
-    this.setState({currentPage : <Invoice></Invoice>});
+    
     this.setState({loginState : true});
     this.setState({userName : e.User});
     this.setState({jwttoken : e.Data.token});
@@ -59,7 +61,10 @@ class App extends React.Component
     let refreshIntervall = (e.Data.expiration_secs-100)*1000;
     this.refreshToken();
     setInterval(this.refreshToken, refreshIntervall);
-
+    let userdata = await backendApi.getCurrentUsers(this.props.jwttoken);
+    console.log(userdata);
+    this.setState({Users : JSON.parse(userdata)});
+    this.setState({currentPage : <Invoice userdata = {this.state.Users}></Invoice>});
   }
 
   reportLoginPressed(e)
@@ -80,13 +85,13 @@ class App extends React.Component
     {
       this.setState({showLogin : true});
     }
-    this.setState({currentPage : <Invoice></Invoice>});
+    this.setState({currentPage : <Invoice userdata = {this.state.Users}></Invoice>});
   }
 
   reportRegister(e)
   {
     this.setState({showLogin : true});
-    this.setState({currentPage : <Invoice></Invoice>});
+    this.setState({currentPage : <Invoice userdata = {this.state.Users}></Invoice>});
   }
 
   reportMyAccountPressed(e)

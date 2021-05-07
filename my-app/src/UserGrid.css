@@ -18,8 +18,7 @@
 .UserGridCity { grid-area: 3 / 2 / 4 / 3; } 
 .UserGridCountry { grid-area: 3 / 3 / 4 / 4; } 
 .UserGridAddress { grid-area: 2 / 1 / 3 / 4; } 
-.UserGridFirstName { grid-area: 1 / 1 / 2 / 3; } 
-.UserGridLastName { grid-area: 1 / 3 / 2 / 4; } 
+.UserGridName { grid-area: 1 / 1 / 2 / 4; } 
 
 .UserGridEdit
 {

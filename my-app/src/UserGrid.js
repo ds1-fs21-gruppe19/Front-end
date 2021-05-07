@@ -29,15 +29,11 @@ class UserGrid extends React.Component {
       return (
         <div className = "UserGrid">
 
-          <div className = "UserGridFirstName">
-          <label className="UserGidLbl">Vorname:</label>
-            <input type="Text" className="GirdTextField" value ={this.state.data.first_name} onChange = {this.TextInputChange} id="first_name"></input>
+          <div className = "UserGridName">
+          <label className="UserGidLbl">Name:</label>
+            <input type="Text" className="GirdTextField" value ={this.state.data.name} onChange = {this.TextInputChange} id="name"></input>
           </div>
            
-          <div className = "UserGridLastName">
-          <label className="UserGidLbl">Nachname:</label>
-            <input type="Text" className="GirdTextField" value ={this.state.data.last_name} onChange = {this.TextInputChange} id = "last_name"></input>
-          </div>
 
           <div className = "UserGridAddress">
           <label className="UserGidLbl">Adresse:</label>
@@ -85,7 +81,7 @@ class UserGrid extends React.Component {
         console.log(response);
     }
 
-TextInputChange(e)
+TextInputChange(e) 
     {  
         let newData = this.state.data;
         newData[e.target.id] = e.target.value

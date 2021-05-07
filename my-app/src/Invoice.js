@@ -23,7 +23,8 @@ class Invoice extends React.Component {
           currency: ["CHF", "TextBox_Medium",""],
           reference_type: ["", "TextBox_Medium",""],
           reference_number: ["", "TextBox_Medium",""],
-          additional_information: ["", "TextBox_Medium",""]
+          additional_information: ["", "TextBox_Medium",""],
+          currentSelectedIban: "--Ihre Iban Nummern--"
         }
         this.TextInputChange = this.TextInputChange.bind(this);
         this.DownloadClick = this.DownloadClick.bind(this);
@@ -33,9 +34,29 @@ class Invoice extends React.Component {
 
         this.AmoutTextChange = this.AmoutTextChange.bind(this);
         this.AmountTextFocusLost = this.AmountTextFocusLost.bind(this);
+
+        this.dropDownButtonPressed = this.dropDownButtonPressed.bind(this);
       }
 
     render() {
+      let dropdown = <div></div>;
+      console.log(this.props);
+      if("userdata" in this.props)
+      {
+        let options =  [];
+        let counter = 0;
+        for( const user of this.props.userdata)
+        {
+          options.push( <div><button onClick={this.dropDownButtonPressed} id={counter}>{user.iban}</button><br></br></div>);
+          counter++;
+        }
+        dropdown = <div class="dropdown">
+          <button class="dropbtn">{this.state.currentSelectedIban}<img src="./Dropdown.svg" className="DropdownImg"></img></button>
+          <div class="dropdown-content">
+            {options}
+          </div>
+        </div>
+      }
       return (
         <div className = "Invoice-Slip">
             <div className = "Invoice">
@@ -157,9 +178,12 @@ class Invoice extends React.Component {
               <div className ="Controls_Title">
                 <h2 className = "ControlsTitel_Text">Einstellungen:</h2>
               </div>
-              <div className ="EmptySettings"></div>
+              <div className ="EmptySettings">
+              {dropdown}
+              </div>
               <div className = "Controls_DownLoadButton">
                 <input type="Button" className ="DownloadButton" value ="Download PDF" onClick ={this.DownloadClick} readOnly></input> 
+                
               </div>
                          
             </div>
@@ -197,7 +221,6 @@ class Invoice extends React.Component {
     async IbanTextChange(e)
     {
       let formatedIban = stringOpperation.StringAddSpace(e.target.value);
-      console.log(formatedIban.length);
       if(formatedIban.length >26)
       {
         formatedIban =formatedIban.substring(0,26);
@@ -386,6 +409,19 @@ class Invoice extends React.Component {
     {
       let newValues = [e.target.value, this.state.currency[1], this.state.currency[2]];
       this.setState({currency : newValues });
+    }
+
+    dropDownButtonPressed(e)
+    {
+      console.log(e.target.id);
+      this.setState({
+        currentSelectedIban: this.props.userdata[e.target.id].iban,
+        creditor_iban: [this.props.userdata[e.target.id].iban, "TextBox_Medium",""],
+        creditor_name: [this.props.userdata[e.target.id].name, "TextBox_Medium",""],
+        creditor_address: [this.props.userdata[e.target.id].address, "TextBox_Medium",""],
+        creditor_zip_code: [this.props.userdata[e.target.id].zip_code, "TextBox_Small",""],
+        creditor_city: [this.props.userdata[e.target.id].city, "TextBox_Small",""]
+      });
     }
 
     

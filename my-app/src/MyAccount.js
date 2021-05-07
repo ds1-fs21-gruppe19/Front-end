@@ -25,7 +25,8 @@ class MyAccount extends React.Component {
       console.log(userdata);
       this.setState({Users : JSON.parse(userdata)});
       this.setState({UsersLoaded : true});
-      this.setState({UsersOnServer: JSON.parse(userdata).length})
+      this.setState({UsersOnServer: JSON.parse(userdata).length});
+      
       
     }
 
@@ -82,9 +83,7 @@ class MyAccount extends React.Component {
       const originalArr = this.state.Users;
       
       const newList = originalArr.concat([{
-        "pk": this.state.Users.length + 1,
-        "first_name": "",
-        "last_name": "",
+        "name":"",
         "address": "",
         "zip_code": "",
         "city": "",
