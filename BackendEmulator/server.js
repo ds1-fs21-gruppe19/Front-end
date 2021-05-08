@@ -17,24 +17,7 @@ var myAccouncts = {
                 "city": "WangenSZ",
                 "iban":"CH4000777003656120095",
                 "country": "CH"
-            },
-            {
-                "name": "Reynholm Industries",
-                "address": "Thomas More St",
-                "zip_code": "E1W 1YW",
-                "city": "London",
-                "iban": "CH9830781624909502000",
-                "country": "CH"
-            },
-            {
-                "name": "Test User",
-                "address": "Downing Street 10",
-                "zip_code": "SW1",
-                "city": "London",
-                "iban": "CH4000777003656120095",
-                "country": "CH"
             }
-
         ]
 
         

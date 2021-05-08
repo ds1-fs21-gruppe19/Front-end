@@ -1,51 +1,51 @@
 # Front-End Doc
 
-### Invoice
+The "QR Rechnung" React application is build to interact with the "QR Slip" Backend. The landing page shows a Swiss QR Rechnung.
 
-Beim drücken auf den Knopf "Download PDF" sendet die Ract App einen **Post** request. 
-Die **Json** Struktur sieht wie folgt aus. 
+#
 
-##### Request payload:
-```
+## `App.js`
+
+The `"App.js"` Component is the root component of the Application. It manages the state of the application. The application has basicl two diffrent states. The user is logged in or the User is not logged in. 
+
+If the user is **not** logged in the page will look like this.
+
+### `User not logged in:`
+![Invoice Modul](Screenshots/croped/QRSlip6.png)
+
+
+If the user **is logged in** the page will look like this.
+
+### `User logged in:`
+![Invoice Modul](Screenshots/croped/QRSlip3.png)
+
+The App components contains three main React components. 
+
+The `"Header.js"` component creates the header of the site. The header constists of the Logo
+
+![Invoice Modul](Screenshots/croped/QRSlip9.png)
+
+and a Button which depenting on the state of the application is a **Login** or **MyAccount** button.
+
+![Invoice Modul](Screenshots/croped/QRSlip11.png)
+![Invoice Modul](Screenshots/croped/QRSlip10.png)
+
+The `"Footer.js"`component creates the footer of the site. The footer consists of the **Logo**, the **Copyrights**, the **Privacy Policy** and some **Legal Stuff**.
+
+![Invoice Modul](Screenshots/croped/QRSlip12.png)
+
+The last component is dependent on the state of the site. It can be the `"Invoice.js"`, the `"Login.js"`, the `"Register.js"` or `"MyAccount.js"`. The current commponent is stores in the state of the App component. 
+
+The state of this component contains the folowing:
+````jsx
 {
-    "Receiver_IBAN" : "CH40 0077 7003 6561 2009 5",
-    "Receiver_Name": "Tobias Rothlin",
-    "Receiver_Street": "Peterliwiese 33",
-    "Receiver_City": "8855 Wangen SZ",
-    "Receiver_Ref": "",
-    "AdditionalInfo": "Test123",
-    "FromName": "Hans Muster",
-    "FromStreet": "Sonnenstrasse 31",
-    "FromCity": "2000 Schöningen",
-    "Amount": "5000.00",
-    "Currency": "CHF"
+    currentPage: <Invoice></Invoice>,
+    loginState : false,
+    jwtToken: "",
+    experationTime : 0,
+    userName : "",
+    showLogin : true,
+    users:[]
 }
-```
+````
 
-##### Invoice View:
-
-Das Invoice Modul besteht aus 10 Textfelder sowie einem Button. 
-![Invoice Modul](Screenshots/QRCode_View.png)
-
-
-### Login
-
-Bei drücken auf den "Login" Knopf auf der Startseite verschwindet das Invoice Modul und das Login Modul wird dargetstellt.
-
-##### Request payload:
-```
-
-```
-
-##### Invoice View:
-
-Das Login Modul besteht aus 2 Textfelder sowie einem Button. 
-![Invoice Modul](Screenshots/Login_View.png)
-
-
-### Preview
-
-Ein Build der App kann unter dieser URL angeschaut werden. 
-Preview [Preview](http://www.QRCodePreview.rothlin.com).
-
-Die Preview Seite sendet einen Post request an ein Echo Rest. Die Antwort des Rests wird in der Console angezeit. 
