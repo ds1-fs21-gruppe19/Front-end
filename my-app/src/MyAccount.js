@@ -17,6 +17,7 @@ class MyAccount extends React.Component {
         }
 
         this.AddUser = this.AddUser.bind(this);
+        this.HomePressed = this.HomePressed.bind(this);
       }
     
     async loadData()
@@ -26,6 +27,7 @@ class MyAccount extends React.Component {
       this.setState({Users : JSON.parse(userdata)});
       this.setState({UsersLoaded : true});
       this.setState({UsersOnServer: JSON.parse(userdata).length});
+
       
       
     }
@@ -75,6 +77,7 @@ class MyAccount extends React.Component {
         table.push(<tr>{children}</tr>)
       }
       table.push(<tr><td><input type="Button" className = "AddButtonMyAccount" onClick={this.AddUser} value="Neuer User" ></input></td></tr>)
+      table.push(<tr><td><input type="Button" className = "AddButtonMyAccount" onClick={this.HomePressed} value="Zurück" ></input></td></tr>)
       return table
     }
     
@@ -92,6 +95,11 @@ class MyAccount extends React.Component {
       }]);
 
       this.setState({Users: newList});
+    }
+
+    HomePressed(e)
+    {
+        this.props.reportHomePressed();
     }
  
   }

@@ -96,7 +96,7 @@ class App extends React.Component
 
   reportMyAccountPressed(e)
   {
-    this.setState({currentPage : <MyAccount jwttoken = {this.state.jwttoken}></MyAccount>});
+    this.setState({currentPage : <MyAccount jwttoken = {this.state.jwttoken} reportHomePressed = {this.reportHomePressed}></MyAccount>});
   }
 }
 
