@@ -58,10 +58,19 @@ class Login extends React.Component {
     async Login(e)
     { 
       let respone = await backendApi.login(this.state.email,this.state.password);
+      let data;
+      try
+      {
+        data = JSON.parse(respone.response);
+      }
+      catch
+      {
+        console.log(respone.response);
+      }
       let report = 
       {
         "User" : this.state.email,
-        "Data" : JSON.parse(respone.response)
+        "Data" : data
       };
       if(respone.status === 200)
         {

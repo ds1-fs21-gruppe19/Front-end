@@ -32,7 +32,7 @@ body{
 
 }
 
-.invalid
+.error
 {
   border-color: #F56451;
   border-style: solid;

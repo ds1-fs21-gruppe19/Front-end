@@ -30,8 +30,10 @@ class App extends React.Component
     }
 
 
-    refreshToken= () => {
-      console.log("Refreshing Login");
+    refreshToken= async() => {
+      let newToken = await backendApi.refreshLogin();
+      this.setState({jwttoken : newToken});
+      console.log(newToken);
     }
 
   render() {
@@ -84,8 +86,13 @@ class App extends React.Component
     if(!this.state.loginState)
     {
       this.setState({showLogin : true});
+      this.setState({currentPage : <Invoice></Invoice>});
     }
-    this.setState({currentPage : <Invoice userdata = {this.state.Users}></Invoice>});
+    else
+    {
+      this.setState({currentPage : <Invoice userdata = {this.state.Users}></Invoice>});
+    }
+    
   }
 
   reportRegister(e)

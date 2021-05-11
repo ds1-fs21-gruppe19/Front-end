@@ -24,7 +24,16 @@ class MyAccount extends React.Component {
     {
       let userdata = await backendApi.getCurrentUsers(this.props.jwttoken);
       console.log(userdata);
-      this.setState({Users : JSON.parse(userdata)});
+      let users;
+      try
+      {
+        users = JSON.parse(userdata);
+      }
+      catch
+      {
+        console.log(userdata);
+      }
+      this.setState({Users : users});
       this.setState({UsersLoaded : true});
       this.setState({UsersOnServer: JSON.parse(userdata).length});
 

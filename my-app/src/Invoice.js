@@ -216,7 +216,7 @@ class Invoice extends React.Component {
       }
       else
       {
-        newValues[1] = newValues[1].split(" ")[0] + " invalid";
+        newValues[1] = newValues[1].split(" ")[0] + " error";
         newValues[2] = "Dies ist ein Pflichtfeld!";
       }
 
@@ -240,7 +240,7 @@ class Invoice extends React.Component {
         }
         else
         {
-          newValues[1] = newValues[1].split(" ")[0] + " invalid";
+          newValues[1] = newValues[1].split(" ")[0] + " error";
           newValues[2] = "Die Iban ist nicht gültig!";
         }
       }

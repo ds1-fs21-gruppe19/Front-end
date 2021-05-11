@@ -52,7 +52,7 @@ class Register extends React.Component {
 
               <div className = "IBANField">
               <label className = "TextBoxLbl_Register">IBAN</label><label className="Error">{this.state.iban[2]}</label><br></br>
-              <input type = "Text" id= "iban" className ={this.state.iban[1]} value = {this.state.iban[0]} placeholder ="" onChange = {this.IbanTextChange} ></input>
+              <input type = "Text" id= "iban" className ={this.state.iban[1]} value = {this.state.iban[0]} placeholder ="" onChange = {this.IbanTextChange} onBlur={this.IbanTextChange} ></input>
               </div>
 
               <div className = "CountryField">
@@ -98,7 +98,7 @@ class Register extends React.Component {
       }
       else
       {
-        newValues[1] = "TextBox_Full invalid";
+        newValues[1] = "TextBox_Full error";
         newValues[2] = "ist ein Pflichtfeld!";
       }
 
@@ -123,7 +123,7 @@ class Register extends React.Component {
         }
         else
         {
-          newValues[1] = "TextBox_Full invalid";
+          newValues[1] = "TextBox_Full error";
           newValues[2] = "ist nicht gültig!";
         }
       }
@@ -141,7 +141,7 @@ class Register extends React.Component {
       }
       else
       {
-        newValues[1] = "TextBox_Full invalid";
+        newValues[1] = "TextBox_Full error";
         newValues[2] = "ist nicht gülting";
       }
       this.setState({[e.target.id] : newValues });
@@ -192,21 +192,27 @@ class Register extends React.Component {
         this.setState({password : newValues });
         formComplete = false;
       }
+      
+      console.log("Iban------");
+      console.log(this.state.iban[1]);
+      console.log(this.state.iban[1].indexOf("valid"));
+      console.log(this.state.iban[1].indexOf("valid") === -1);
 
-      if(this.state.iban[2].indexOf("valid") === -1)
+      if(this.state.iban[1].indexOf("valid") === -1)
       {
         let newValues = [this.state.iban[0], this.state.iban[1], "ist nicht gültig!"];
         this.setState({iban : newValues });
         formComplete = false;
       }
 
-      if(this.state.user_name[2].indexOf("valid") === -1)
+      if(this.state.user_name[1].indexOf("valid") === -1)
       {
         let newValues = [this.state.user_name[0], this.state.user_name[1], "ist nicht gültig!"];
         this.setState({user_name : newValues });
         formComplete = false;
       }
 
+      console.log("The Form is: "+ formComplete);
 
       if(formComplete)
       {

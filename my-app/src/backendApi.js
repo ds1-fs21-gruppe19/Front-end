@@ -55,6 +55,20 @@ class backendApi extends basicRestRequests
 
     static async refreshLogin()
     {
+      console.log("Refeshing Login!");
+      let result = await this.PostRequest(this.#baseUrl + "refresh-login", null);
+      let data;
+      try
+      {
+        data = JSON.parse(result.response);
+        return data.token;
+      }
+      catch
+      {
+        console.log(result.response);
+        return null;
+      }
+
       
     }
 
