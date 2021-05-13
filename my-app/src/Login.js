@@ -1,5 +1,5 @@
 import './Login.css';
-import stringOpperation from './stringOpperation.js';
+import stringOperation from './stringOperation.js';
 import React from 'react';
 import backendApi from './backendApi';
 
@@ -14,7 +14,7 @@ class Login extends React.Component {
           validEmail: <img alt="Warnings" hidden></img>,
           isEmailValid: false,
           isPasswordValid: false,
-          errorText : <h2 className="errorText"></h2>
+          errorText : <h2 className="errorText"> </h2>
         }
 
         this.Login = this.Login.bind(this);
@@ -41,11 +41,11 @@ class Login extends React.Component {
                 <div className="VerticalSeparator"><br></br></div>
                 <div className ="RegisterSide">
                   <h1>Neu hier?</h1>
-                  <h4 className ="RegisterTitel">Mit einem Konto können Sie:</h4>
-                  <img src="./Speichern.svg" className = "IconRegister" alt ="ImgNotFlund" ></img>
+                  <h4 className ="RegisterTitle">Mit einem Konto können Sie:</h4>
+                  <img src="./Speichern.svg" className = "IconRegister" alt ="ImgNotFound" ></img>
                   <label>Einzelne Teile des Einzahlungsscheins speichern</label>
                   <br></br>
-                  <img src="./Herunterladen.svg" className = "IconRegister" alt ="ImgNotFlund" ></img>
+                  <img src="./Herunterladen.svg" className = "IconRegister" alt ="ImgNotFound" ></img>
                   <label>Mehrere Einzahlungsscheine in einem PDF herunterladen</label>
                   <br></br>
                   <input className ="Btn_Register" type ="Button" value ="Registrieren" onClick={this.registerButtonPressed} readOnly></input>
@@ -57,25 +57,25 @@ class Login extends React.Component {
 
     async Login(e)
     { 
-      let respone = await backendApi.login(this.state.email,this.state.password);
+      let response = await backendApi.login(this.state.email,this.state.password);
       let data;
       try
       {
-        data = JSON.parse(respone.response);
+        data = JSON.parse(response.response);
       }
       catch
       {
-        console.log(respone.response);
+        console.log(response.response);
       }
       let report = 
       {
         "User" : this.state.email,
         "Data" : data
       };
-      if(respone.status === 200)
+      if(response.status === 200)
         {
           this.props.reportLogin(report);
-          this.setState({errorText : <h2 className="errorText"></h2>}); 
+          this.setState({errorText : <h2 className="errorText"> </h2>}); 
         }
         else
         {
@@ -86,17 +86,17 @@ class Login extends React.Component {
     emailHasChanged(e)
     {
       let str = e.target.value.toLowerCase();
-      if(stringOpperation.validateEmail(str))
+      if(stringOperation.validateEmail(str))
       {
         this.setState({
           email : str,
           isEmailValid: true
         });
-        this.setState({validEmail : <img src="./Verified.svg" className = "Login_IconImgs" alt ="ImgNotFlund" ></img>});
+        this.setState({validEmail : <img src="./Verified.svg" className = "Login_IconImgs" alt ="ImgNotFound" ></img>});
       }
       else
       {
-        this.setState({validEmail : <img src="./Warning.svg" className = "Login_IconImgs" alt ="ImgNotFlund" ></img>});
+        this.setState({validEmail : <img src="./Warning.svg" className = "Login_IconImgs" alt ="ImgNotFound" ></img>});
         this.setState({
           isEmailValid: true
         });

@@ -15,12 +15,14 @@ class App extends React.Component
     this.state = {
       currentPage: <Invoice></Invoice>,
       loginState : false,
-      jwttoken: "",
-      experationTime : 0,
+      jwt: "",
+      expirationTime : 0,
       userName : "",
       showLogin : true,
-      Users:[]
+      users:[],
+      firstRefresh: true
     }
+    
     this.reportLogin = this.reportLogin.bind(this);
     this.reportLoginPressed = this.reportLoginPressed.bind(this);
     this.reportRegisterPressed = this.reportRegisterPressed.bind(this);
@@ -29,11 +31,22 @@ class App extends React.Component
     this.reportMyAccountPressed = this.reportMyAccountPressed.bind(this);
     }
 
-
     refreshToken= async() => {
-      let newToken = await backendApi.refreshLogin();
-      this.setState({jwttoken : newToken});
-      console.log(newToken);
+      let refresh = this.state.firstRefresh;
+      console.log("%c "+ refresh, "color: Red");
+      console.log(this.state);
+
+      if(!refresh)
+      {
+        console.log("%c Refreshing Login","color: Orange");
+        let newToken = await backendApi.refreshLogin();
+        this.setState({jwt : newToken});
+        console.log(newToken);
+      }
+      else
+      {
+        console.log("%c Refreshing Login Started","color: Green");
+      }
     }
 
   render() {
@@ -46,7 +59,7 @@ class App extends React.Component
           {this.state.currentPage}
         <footer>
           <div className="FooterMain">
-            <Footer Titel ="QR_Rechnung"></Footer>
+            <Footer></Footer>
           </div> 
         </footer>
       </div>
@@ -58,15 +71,16 @@ class App extends React.Component
     
     this.setState({loginState : true});
     this.setState({userName : e.User});
-    this.setState({jwttoken : e.Data.token});
-    this.setState({experationTime : e.Data.expiration_secs});
-    let refreshIntervall = (e.Data.expiration_secs-100)*1000;
+    this.setState({jwt : e.Data.token});
+    this.setState({expirationTime : e.Data.expiration_secs});
+    let refreshInterval = (e.Data.expiration_secs-100)*1000;
     this.refreshToken();
-    setInterval(this.refreshToken, refreshIntervall);
-    let userdata = await backendApi.getCurrentUsers(this.props.jwttoken);
-    console.log(userdata);
-    this.setState({Users : JSON.parse(userdata)});
-    this.setState({currentPage : <Invoice userdata = {this.state.Users}></Invoice>});
+    setInterval(this.refreshToken, refreshInterval);
+    let userData = await backendApi.getCurrentUsers(this.state.jwt);
+    console.log(userData);
+    this.setState({users : JSON.parse(userData)});
+    this.setState({currentPage : <Invoice userData = {this.state.users}></Invoice>});
+    this.setState({firstRefresh: false});
   }
 
   reportLoginPressed(e)
@@ -81,7 +95,7 @@ class App extends React.Component
     this.setState({currentPage : <Register reportRegister = {this.reportRegister}></Register>});
   }
 
-  reportHomePressed(e)
+  async reportHomePressed(e)
   {
     if(!this.state.loginState)
     {
@@ -90,7 +104,10 @@ class App extends React.Component
     }
     else
     {
-      this.setState({currentPage : <Invoice userdata = {this.state.Users}></Invoice>});
+      let userData = await backendApi.getCurrentUsers(this.state.jwt);
+      console.log(userData);
+      this.setState({users : JSON.parse(userData)});
+      this.setState({currentPage : <Invoice userData = {this.state.users}></Invoice>});
     }
     
   }
@@ -98,12 +115,12 @@ class App extends React.Component
   reportRegister(e)
   {
     this.setState({showLogin : true});
-    this.setState({currentPage : <Invoice userdata = {this.state.Users}></Invoice>});
+    this.setState({currentPage : <Invoice userData = {this.state.users}></Invoice>});
   }
 
   reportMyAccountPressed(e)
   {
-    this.setState({currentPage : <MyAccount jwttoken = {this.state.jwttoken} reportHomePressed = {this.reportHomePressed}></MyAccount>});
+    this.setState({currentPage : <MyAccount jwt = {this.state.jwt} reportHomePressed = {this.reportHomePressed}></MyAccount>});
   }
 }
 

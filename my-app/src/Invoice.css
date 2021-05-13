@@ -9,14 +9,14 @@
     
     }
 
-    .CutHorizotalView { grid-area: 1 / 1 / 2 / 5; } 
+    .CutHorizontalView { grid-area: 1 / 1 / 2 / 5; } 
     .CutVerticalView { grid-area: 1 / 2 / 10 / 3; } 
     .HeaderLeft { grid-area: 2 / 1 / 3 / 2; } 
     .HeaderCenter { grid-area: 2 / 3 / 3 / 4; } 
     .AddressReceiverLeft { grid-area: 3 / 1 / 5 / 2; } 
     .AddressReceiverRight { grid-area: 2 / 4 / 5 / 5; }
-    .ReferenzRight { grid-area: 5 / 4 / 7 / 5; }
-    .ReferenzLeft { grid-area: 6 / 1 / 7 / 2; } 
+    .ReferenceRight { grid-area: 5 / 4 / 7 / 5; }
+    .ReferenceLeft { grid-area: 6 / 1 / 7 / 2; } 
     .FromAddressLeft { grid-area: 7 / 1 / 8 / 2;} 
     .AdditionalInformation { grid-area: 7 / 4 / 8 / 5; } 
     .FromAddressRight { grid-area: 8 / 4 / 9 / 5; } 
@@ -133,7 +133,7 @@
         height: 0.5px;
     }
 
-    .CutHorizotal
+    .CutHorizontal
     {
         height: 20px;
         width: 1400px;
@@ -208,7 +208,7 @@
         grid-row-gap: 0px;
     }
 
-    .Controls_Titel
+    .Controls_Title
     {
         grid-area: 1 / 1 / 2 / 2;
        text-align: left;
@@ -226,13 +226,13 @@
         grid-area: 1 / 2 / 2 / 5;
     }
 
-    .ControlsTitel_Text
+    .ControlsTitle_Text
     {
         text-align: left;
     }
 
     /* Style The Dropdown Button */
-    .dropbtn {
+    .dropBtn {
         background-color: #2196F3;
         color: white;
         height: 50px;
@@ -293,7 +293,7 @@
     }
     
     /* Change the background color of the dropdown button when the dropdown content is shown */
-    .dropdown:hover .dropbtn {
+    .dropdown:hover .dropBtn {
         background-color: #1b7ecf;
         color: rgb(113, 184, 241);
 
@@ -315,4 +315,10 @@
     .LabelDropdown
     {
         margin-right: 10px;
+    }
+
+    .TextSmall
+    {
+        font-size: 16px;
+        font-weight: normal;
     }

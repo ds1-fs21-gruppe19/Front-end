@@ -1,4 +1,4 @@
-class stringOpperation{
+class stringOperation{
 
     static cleanNumbers(str)
     {
@@ -14,28 +14,22 @@ class stringOpperation{
       let numberOfCharactersInString = str.length;
       let numberOfSubsetsInString = parseInt(numberOfCharactersInString/spaceNumber);
 
-      let formatedIbanStr = "";
+      let formattedIbanStr = "";
 
       for(let index = 0 ; index < numberOfSubsetsInString; index++)
       {
-        formatedIbanStr +=  str.substring(index*spaceNumber, (index+1)*spaceNumber) + " ";
+        formattedIbanStr +=  str.substring(index*spaceNumber, (index+1)*spaceNumber) + " ";
       }
 
       if((numberOfCharactersInString-(spaceNumber*numberOfSubsetsInString)) === 0)
       {
-       formatedIbanStr = formatedIbanStr.substring(0,formatedIbanStr.length-1);
+       formattedIbanStr = formattedIbanStr.substring(0,formattedIbanStr.length-1);
       }
       else
       {
-        formatedIbanStr += str.substring(spaceNumber*numberOfSubsetsInString);
+        formattedIbanStr += str.substring(spaceNumber*numberOfSubsetsInString);
       }
-
-      //----Debug----
-      //console.log("numberOfCharactersInString: " + numberOfCharactersInString);
-      //console.log("numberOfSubsetsInString: " + numberOfSubsetsInString);
-      //console.log("formatedIbanStr: " +formatedIbanStr);
-
-      return formatedIbanStr;
+      return formattedIbanStr;
     }
 
     static formatValue(inputStr)
@@ -101,7 +95,7 @@ class stringOpperation{
 
     static validateEmail(str)
     {
-      let regex1 = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+      let regex1 = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:|\\)*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:|\\)+)\])/;
       return regex1.test(str);
     }
 
@@ -162,4 +156,4 @@ class stringOpperation{
 
 }
 
-export default stringOpperation;
+export default stringOperation;

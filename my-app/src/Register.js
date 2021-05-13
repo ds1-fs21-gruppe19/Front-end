@@ -1,5 +1,5 @@
 import './Register.css';
-import stringOpperation from './stringOpperation.js';
+import stringOperation from './stringOperation.js';
 import React from 'react';
 import backendApi from './backendApi';
 
@@ -84,7 +84,7 @@ class Register extends React.Component {
       let newText = "";
       if(e.target.id === "zip_code")
       {
-        newText =stringOpperation.cleanNumbers(e.target.value).substring(0,4);
+        newText =stringOperation.cleanNumbers(e.target.value).substring(0,4);
       }
       else
       {
@@ -107,16 +107,16 @@ class Register extends React.Component {
 
     async IbanTextChange(e)
     {
-      let formatedIban = stringOpperation.StringAddSpace(e.target.value);
-      console.log(formatedIban.length);
-      if(formatedIban.length >26)
+      let formattedIban = stringOperation.StringAddSpace(e.target.value);
+      console.log(formattedIban.length);
+      if(formattedIban.length >26)
       {
-        formatedIban =formatedIban.substring(0,26);
+        formattedIban =formattedIban.substring(0,26);
       }
-      let newValues = [formatedIban, this.state[e.target.id][1], this.state[e.target.id][2]];
+      let newValues = [formattedIban, this.state[e.target.id][1], this.state[e.target.id][2]];
       if(e.target.value.length >= 25)
       {
-        if (stringOpperation.validateIban(e.target.value))
+        if (stringOperation.validateIban(e.target.value))
         {  
           newValues[1] = "TextBox_Full valid";
           newValues[2] = "";
@@ -134,7 +134,7 @@ class Register extends React.Component {
     {
       let newValues = [e.target.value, this.state[e.target.id][1], this.state[e.target.id][2]];
 
-      if(stringOpperation.validateEmail(e.target.value) )
+      if(stringOperation.validateEmail(e.target.value) )
       {
         newValues[1] = "TextBox_Full valid";
         newValues[2] = "";
@@ -227,8 +227,8 @@ class Register extends React.Component {
           "password": this.state.password[0]
           };
   
-        let respone = await backendApi.registerNewUser(json);
-        if(respone.status === 200)
+        let response = await backendApi.registerNewUser(json);
+        if(response.status === 200)
         {
           this.props.reportRegister(e);
         }

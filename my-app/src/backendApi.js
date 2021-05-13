@@ -9,17 +9,18 @@ class backendApi extends basicRestRequests
 
     static async getPDF(json)
     {   
-        console.log(this.#baseUrl);
-        let result = await this.PostRequest(this.#baseUrl,json);
+        let url = this.#baseUrl + "generate-slip";
+        console.log(url);
+        let result = await this.PostRequestWithPDfDownload(url,json);
         return result;
     }
 
-    static async login(email,passowrd)
+    static async login(email,password)
     {
       let url = this.#baseUrl + "login";
       let json = {
         "user_name": email,
-        "password": passowrd
+        "password": password
         }
       let result = await this.PostRequest(url, json);
       return result;
@@ -55,7 +56,7 @@ class backendApi extends basicRestRequests
 
     static async refreshLogin()
     {
-      console.log("Refeshing Login!");
+      console.log("Refreshing Login!");
       let result = await this.PostRequest(this.#baseUrl + "refresh-login", null);
       let data;
       try

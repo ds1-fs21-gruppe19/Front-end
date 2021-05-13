@@ -9,8 +9,8 @@ class Footer extends React.Component {
         this.state = {
             additionalInfo : <div></div>,
             infoState: "non",
-            LegalButtonText :"Legal Stuff",
-            PrivacyButtonText :"Privacy Policy"
+            legalButtonText :"Legal Stuff",
+            privacyButtonText :"Privacy Policy"
         }
         this.LegalButtonPressed = this.LegalButtonPressed.bind(this);
         this.PrivacyButtonPressed = this.PrivacyButtonPressed.bind(this);
@@ -23,11 +23,11 @@ class Footer extends React.Component {
         
         <div className = "Footer">
             <hr></hr>
-            <img src = "./LogoGross.svg" className ="Logo" alt={this.props.Titel}></img>
+            <img src = "./LogoGross.svg" className ="Logo" alt="Logo"></img>
             <h1 className ="Copyright">Copyright © 2021 Robin Friedli, Linard Vincenz, Tobias Rothlin</h1>
             {this.state.additionalInfo}
-            <input type="Button" value ={this.state.LegalButtonText} className="LinkButton" onClick={this.LegalButtonPressed} readOnly></input>
-            <input type="Button" value ={this.state.PrivacyButtonText} className="LinkButton" onClick={this.PrivacyButtonPressed} readOnly></input>
+            <input type="Button" value ={this.state.legalButtonText} className="LinkButton" onClick={this.LegalButtonPressed} readOnly></input>
+            <input type="Button" value ={this.state.privacyButtonText} className="LinkButton" onClick={this.PrivacyButtonPressed} readOnly></input>
         </div>
       );
     }
@@ -41,8 +41,8 @@ class Footer extends React.Component {
             });
             this.setState({
                 infoState : "Legal",
-                LegalButtonText:"Close Legal",
-                PrivacyButtonText:"Privacy Policy"
+                legalButtonText:"Close Legal",
+                privacyButtonText:"Privacy Policy"
             });
         }
         else
@@ -50,8 +50,8 @@ class Footer extends React.Component {
             this.setState({additionalInfo : <div></div>});
             this.setState({
                 infoState : "non",
-                LegalButtonText:"Legal Stuff",
-                PrivacyButtonText:"Privacy Policy"
+                legalButtonText:"Legal Stuff",
+                privacyButtonText:"Privacy Policy"
             });
         }
         
@@ -66,8 +66,8 @@ class Footer extends React.Component {
             });
             this.setState({
                 infoState : "Privacy",
-                LegalButtonText:"Legal Stuff",
-                PrivacyButtonText:"Close Privacy"
+                legalButtonText:"Legal Stuff",
+                privacyButtonText:"Close Privacy"
             });
         }
         else
@@ -75,8 +75,8 @@ class Footer extends React.Component {
             this.setState({additionalInfo : <div></div>});
             this.setState({
                 infoState : "non",
-                LegalButtonText:"Legal Stuff",
-                PrivacyButtonText:"Privacy Policy"
+                legalButtonText:"Legal Stuff",
+                privacyButtonText:"Privacy Policy"
             });
         }
     }

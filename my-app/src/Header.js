@@ -19,26 +19,26 @@ class Header extends React.Component {
     render() {
         let loginView;
         let editView;
-        const islogedIn = this.props.loginState;
-        if(!islogedIn)
+        const isLoggedIn = this.props.loginState;
+        if(!isLoggedIn)
         {
             if(this.props.showLogin)
             {
-                loginView = <input type ="Button" value ="Anmelden" className = "LoginButton" onClick = {this.LoginPressed}></input>;
+                loginView = <input type ="Button" value ="Anmelden" className = "LoginButton" onClick = {this.LoginPressed} readOnly></input>;
             }
         }
         else
         {
-            let text = "Wilkommen " + this.props.userName;
+            let text = "Willkommen " + this.props.userName;
             console.log(text);
             loginView = <label className = "LblReturningUsers">{text}</label>;
-            editView = <input type = "Button" value ="Mein Account" className = "EditButton" onClick ={this.EditPressed}></input>;
+            editView = <input type = "Button" value ="Mein Account" className = "EditButton" onClick ={this.EditPressed} readOnly></input>;
         }
         return (
         
         <div className = "Header">
-            <div className ="Header_Titel">
-                <img src = "./LogoGross.svg" className ="HeaderLogo" alt={this.props.Titel} onClick = {this.HomePressed}></img>
+            <div className ="Header_Title">
+                <img src = "./LogoGross.svg" className ="HeaderLogo" alt="Logo" onClick = {this.HomePressed}></img>
             </div>
             <div className = "Header_LoginButton">
             {editView}

@@ -32,7 +32,7 @@
     grid-row-gap: 0px;
     width: 1281px;
 }
-.Header_Titel
+.Header_Title
 {
     grid-area: 1 / 1 / 2 / 2;
    text-align: left;
