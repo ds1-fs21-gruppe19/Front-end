@@ -67,6 +67,11 @@
     transform: translateY(-2px);
 }
 
+.SaveButton::after
+{
+    background-color: #51f59b;
+}
+
 .DeleteButton
 {
   height: 40px;
@@ -87,4 +92,11 @@
 {
     box-shadow: 0px 15px 20px rgba(245, 100, 81, 0.4);
     transform: translateY(-2px);
+}
+
+.ErrorTextUserGird
+{
+    color: #F56451;
+    font-size: 15px;
+    font-weight: bold;
 }

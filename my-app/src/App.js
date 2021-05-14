@@ -31,7 +31,7 @@ class App extends React.Component
     this.reportMyAccountPressed = this.reportMyAccountPressed.bind(this);
     }
 
-    refreshToken= async() => {
+    refreshToken = async() => {
       let refresh = this.state.firstRefresh;
       console.log("%c "+ refresh, "color: Red");
       console.log(this.state);
@@ -105,8 +105,17 @@ class App extends React.Component
     else
     {
       let userData = await backendApi.getCurrentUsers(this.state.jwt);
-      console.log(userData);
-      this.setState({users : JSON.parse(userData)});
+      console.log("%c" + userData, "color: Red");
+      let users;
+      try
+      {
+        users = JSON.parse(userData);
+      }
+      catch
+      {
+        window.location.reload();
+      }
+      this.setState({users : users});
       this.setState({currentPage : <Invoice userData = {this.state.users}></Invoice>});
     }
     

@@ -22,6 +22,7 @@ class MyAccount extends React.Component {
     
     async loadData()
     {
+      
       let userData = await backendApi.getCurrentUsers(this.props.jwt);
       console.log(userData);
       let users;
@@ -33,6 +34,7 @@ class MyAccount extends React.Component {
       {
         console.log(userData);
       }
+      this.setState({users : []});
       this.setState({users : users});
       this.setState({usersLoaded : true});
       this.setState({usersOnServer: JSON.parse(userData).length});
