@@ -2,6 +2,10 @@
 
 The "QR Rechnung" React application is build to interact with the "QR Slip" Backend. The landing page shows a Swiss QR Rechnung.
 
+## Setup with Docker
+
+Please see [qr_slip](https://github.com/ds1-fs21-gruppe19/qr_slip.git).
+
 ## `App.js`
 
 The `"App.js"` Component is the root component of the Application. It manages the state of the application. The application has basically two different states. The user is logged in or the User is not logged in. 
