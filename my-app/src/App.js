@@ -33,20 +33,17 @@ class App extends React.Component
 
     refreshToken = async() => {
       let refresh = this.state.firstRefresh;
-      console.log("%c "+ refresh, "color: Red");
-      console.log(this.state);
 
       if(!refresh)
       {
-        console.log("%c Refreshing Login","color: Orange");
         let newToken = await backendApi.refreshLogin();
         this.setState({jwt : newToken});
-        console.log(newToken);
       }
       else
       {
-        console.log("%c Refreshing Login Started","color: Green");
+        console.log("%c First Refresh","color: Green");
       }
+
     }
 
   render() {
@@ -105,7 +102,6 @@ class App extends React.Component
     else
     {
       let userData = await backendApi.getCurrentUsers(this.state.jwt);
-      console.log("%c" + userData, "color: Red");
       let users;
       try
       {

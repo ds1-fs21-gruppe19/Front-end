@@ -15,6 +15,7 @@ class basicRestRequests
       });
     }
 
+
     static PostRequestWithPDfDownload(url , json) {
         console.log(url);
         let data = JSON.stringify(json);
